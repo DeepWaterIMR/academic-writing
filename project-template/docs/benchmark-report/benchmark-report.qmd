@@ -1,0 +1,171 @@
+---
+subtitle: "Benchmark report"
+date: today
+published-title: "Version"
+lang: {{LANGUAGE}}
+bibliography: {{BIBLIOGRAPHY}}
+csl: {{CSL}}
+params:
+  benchmark_year: {{PROJECT_YEAR}}    # Year of the benchmark workshop
+  assessment_year: {{PROJECT_YEAR}}   # First assessment year the new settings apply to
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 3
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 4
+  docx:
+    # ICES issues a workshop template each year. Put it in docs/assets/ and name it here.
+    # reference-doc: ../assets/wg-report-template.docx
+    number-sections: false
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 4
+    fig-dpi: 300
+    fig-align: left
+prefer-html: true
+crossref:
+  chapters: true
+execute:
+  echo: false
+  warning: false
+  message: false
+editor_options:
+  chunk_output_type: console
+---
+
+<!--
+A benchmark is a full revision of a stock assessment, done at a workshop on a three-to-five
+year cycle. It is not an annual assessment: the question is not "what is the state of the
+stock" but "is this the right assessment, and what should replace it".
+
+The workshop's most important product is the STOCK ANNEX — the settings the annual
+assessment will use until the next benchmark. Write the annex as the deliverable and the
+chapter as the argument for it.
+
+Sections follow the ICES benchmark structure: data sources and quality, environmental and
+ecosystem issues, assessment methods explored, forecast, reference points, the recommended
+changes to the stock annex, and recommendations for future work. The external reviewers'
+report and the issue list are compiled by the workshop, not by the stock coordinator, and
+are referenced rather than written here.
+
+Confirm the current structure against the workshop's terms of reference and the most recent
+ICES benchmark reports before using this skeleton — the sections are stable, the details
+are not.
+-->
+
+```{r setup}
+#| include: false
+knitr::opts_knit$set(root.dir = here::here())
+source(here::here("R", "0_setup.R"))
+source(here::here("R", "report_helpers.R"))
+```
+
+```{r benchmark-values}
+#| include: false
+#| eval: false
+# Every value the chapter quotes, derived from the model runs being compared. A benchmark
+# chapter compares several candidate models, so keep one object per candidate and derive
+# the comparison rather than typing it.
+```
+
+# {{PROJECT_TITLE}}
+
+## Terms of reference and issues addressed
+
+<!-- What the workshop was asked to resolve, and the issue list it worked from. -->
+
+## Stock identity and ecosystem context
+
+<!-- Stock boundaries, mixing, and the environmental and ecosystem issues considered. -->
+
+## Data
+
+### Catch and landings
+
+### Survey indices
+
+<!--
+State whether each index is relative or absolute, what effort denominator it uses, and how
+zero catches were handled. See the ecology-fisheries reference in the academic-style skill.
+-->
+
+### Biological data
+
+### Data quality and revisions
+
+<!-- What changed since the last benchmark, and why the revised series is preferred. -->
+
+## Assessment methods
+
+### Candidate models
+
+```{r}
+#| label: tbl-candidates
+#| tbl-cap: "Candidate assessment models: structure, data used, and the issue each addresses."
+#| eval: false
+```
+
+### Model exploration and diagnostics
+
+<!--
+Report what was tried, including what failed. A benchmark that reports only the accepted
+model is not reviewable.
+-->
+
+### Model selection
+
+<!-- The criteria, applied in the order they were agreed, and the resulting choice. -->
+
+## Short-term forecast
+
+## Biological reference points
+
+```{r}
+#| label: tbl-reference-points
+#| tbl-cap: "Proposed reference points, their basis, and the values they replace."
+#| eval: false
+```
+
+## Recommended stock annex
+
+<!--
+The settings the annual assessment will use: data inputs and their processing, model
+configuration, forecast assumptions, and reference points. This is the deliverable —
+write it so that next year's stock coordinator can run the assessment from it alone.
+-->
+
+## Recommendations for future work
+
+<!-- Specific enough to become the next benchmark's issue list. -->
+
+## Reviewers' report and issue list
+
+<!-- Compiled by the workshop. Reference it; do not write it here. -->
+
+## Software and reproducibility
+
+The model runs were carried out in `r R.version.string` [@rcoreteam]. The report was
+compiled with Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the
+model output and the input data.
+
+This document and the associated analyses were created with researcher-supervised generative
+AI (<!-- MODEL -->). The authors specified and checked the analyses, and reviewed, edited,
+and approved all AI-assisted content, for which they take full responsibility.
+
+## References
+
+::: {#refs}
+:::
+
+{{< pagebreak >}}
+
+## Tables and figures
+
+```{r}
+#| label: fig-model-comparison
+#| fig-cap: "Figure X.1. Spawning-stock biomass estimated by each candidate model, with 95% confidence intervals."
+#| fig-width: 8
+#| fig-height: 4
+#| eval: false
+```

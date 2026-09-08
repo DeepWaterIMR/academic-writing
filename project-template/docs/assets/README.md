@@ -9,10 +9,9 @@ Everything a document reads but does not generate:
 - `*.lua` — Pandoc filters
 - static figures, logos, and photographs the documents include
 
-Paths in a YAML header are relative to the `.qmd`, so a document in `docs/<type>/` refers to
-these as `assets/...` when the render happens from the document's own folder, or
-`docs/assets/...` from the project root. Keep whichever convention the project uses
-consistent across every document.
+**Paths in a YAML header are resolved relative to the `.qmd`, not to the project root.** A
+document in `docs/<type>/` therefore refers to these files as `../assets/...`, and so do the
+`\includegraphics` paths inside the LaTeX partials. Keep every document to that convention.
 
 These files are tracked even though the root `.gitignore` blocks their extensions elsewhere —
 that is what the `!docs/assets/**` negation is for.

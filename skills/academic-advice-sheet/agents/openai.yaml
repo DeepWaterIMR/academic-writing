@@ -1,0 +1,4 @@
+interface:
+  display_name: "Advice Sheet"
+  short_description: "Produce a standardised fishing-opportunities advice sheet."
+  default_prompt: "Write the catch advice sheet for this stock, following the standard section order with every number derived from the assessment output."

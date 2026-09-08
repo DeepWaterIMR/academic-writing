@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific Manuscript"
+  short_description: "Draft and structure a journal manuscript in ecology or fisheries science."
+  default_prompt: "Help me plan and write a scientific manuscript: agree the claim and the figures first, then draft the sections in IMRaD order."

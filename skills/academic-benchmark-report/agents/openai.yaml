@@ -1,0 +1,4 @@
+interface:
+  display_name: "Benchmark Report"
+  short_description: "Write up a stock assessment benchmark and its stock annex."
+  default_prompt: "Write the benchmark report: the issues addressed, the data revisions, the candidate models and why each was accepted or rejected, and the recommended stock annex."

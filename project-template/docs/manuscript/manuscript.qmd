@@ -1,0 +1,204 @@
+---
+title: "{{PROJECT_TITLE}}"
+author:
+{{AUTHOR_BLOCK}}
+affiliations:
+{{AFFILIATION_BLOCK}}
+# The authors-block extension renders the author and affiliation list as a journal-style
+# byline in Word and PDF. It is not bundled with Quarto — install it in this project with
+#   quarto add quarto-ext/authors-block
+# and then uncomment the two lines below. Without it, Quarto's own author handling is used.
+# filters:
+#   - authors-block
+date: today
+published-title: "Version"
+lang: {{LANGUAGE}}
+bibliography: {{BIBLIOGRAPHY}}
+csl: {{CSL}}
+format:
+  html:
+    self-contained: true
+    toc: true
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 5
+    html-math-method: mathjax
+  docx:
+    reference-doc: ../assets/custom-reference-doc.docx
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 5
+  pdf:
+    documentclass: article
+    papersize: a4
+    geometry:
+      - top=25mm
+      - bottom=25mm
+      - left=25mm
+      - right=25mm
+    linestretch: 2
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 5
+    fig-pos: "H"
+crossref:
+  custom:
+    - kind: float
+      key: suppfig
+      latex-env: suppfig
+      reference-prefix: Figure S
+      space-before-numbering: false
+      latex-list-of-description: Supplementary Figure
+    - kind: float
+      key: supptbl
+      latex-env: supptbl
+      reference-prefix: Table S
+      space-before-numbering: false
+      latex-list-of-description: Supplementary Table
+execute:
+  echo: false
+  warning: false
+  message: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup}
+#| include: false
+knitr::opts_knit$set(root.dir = here::here())
+source(here::here("R", "0_setup.R"))
+source(here::here("R", "report_helpers.R"))
+```
+
+```{r data}
+#| include: false
+# Load the compiled data and derive every value the prose quotes, so that the text, the
+# tables, and the figures cannot drift apart. Add to this chunk rather than computing
+# inside a sentence.
+#
+# dat <- readRDS(file.path(output_dir, "compiled_data.rds"))
+```
+
+# Abstract {.unnumbered}
+
+<!--
+Background → problem and methods → results → conclusion, with numbers. 200–300 words;
+check the journal. Every result here must match the main text.
+-->
+
+**Keywords:** <!-- Words the reader would search for. Do NOT repeat words from the title. -->
+
+{{< pagebreak >}}
+
+# Introduction
+
+<!--
+Three or four paragraphs: the broad problem → what is known → the gap → the focal system →
+the unresolved question → an explicit aim or testable hypothesis. The reader must be able
+to evaluate your results without going to read your references first.
+-->
+
+# Material and methods
+
+## Study area and data
+
+<!-- Chronological: design → field execution → sample treatment → analysis. -->
+
+## Statistical analysis
+
+## Software and reproducibility
+
+All analyses were done in `r R.version.string` [@rcoreteam]. Data were handled with the
+tidyverse packages [@tidyverse] and figures drawn with ggplot2 [@ggplot2]. The document was
+compiled with Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the
+source data.
+
+<!--
+Cite every package that influenced the results, using toBibtex(citation("pkg")) — never a
+citation written from memory. Then the AI disclosure. Name the model you are; if a model is
+already listed, ADD yours rather than replacing it. See the ai-disclosure reference in the
+academic-style skill.
+-->
+
+This document and the associated analyses were created with researcher-supervised generative
+AI (<!-- MODEL -->). The authors designed the study, specified and checked the analyses, and
+reviewed, edited, and approved all AI-assisted content, for which they take full
+responsibility.
+
+# Results
+
+<!--
+Findings only, in the order of the aims. The floats carry the data; the text links them and
+points out the main trends. Report direction, magnitude, contrast, and uncertainty, with the
+cross-reference at the END of the sentence — "Catches declined by X% over the period
+(@fig-trend)", not "Figure 1 shows the trend in catches". Every number is inline R; see the
+academic-manuscript skill for the syntax.
+-->
+
+# Discussion
+
+<!--
+Main finding → mechanisms → agreement and disagreement with previous work → assumptions →
+limitations WITH the likely direction of bias → implications → the testable questions that
+follow. Do not repeat the Results. Do not catalogue previous studies. Label speculation as
+speculation.
+-->
+
+## Conclusions
+
+{{< pagebreak >}}
+
+# Technical statements {.unnumbered}
+
+## Acknowledgements {.unnumbered}
+
+## Ethics statement {.unnumbered}
+
+## Data availability {.unnumbered}
+
+<!-- This statement must be true. If the analysis is not reproducible from what is
+deposited, say so. -->
+
+## Funding {.unnumbered}
+
+## Conflict of interest {.unnumbered}
+
+## Author contributions {.unnumbered}
+
+<!-- CRediT roles. A language model is never an author and never appears here. -->
+
+{{< pagebreak >}}
+
+# Tables {.unnumbered}
+
+```{r}
+#| label: tbl-example
+#| tbl-cap: "State the point of the table, not its topic. Give sample sizes and define every abbreviation used in it."
+#| eval: false
+# table_or_status(dat, "…")
+```
+
+{{< pagebreak >}}
+
+# Figures {.unnumbered}
+
+```{r}
+#| label: fig-example
+#| fig-cap: "State what the figure shows. Give n and say what the error bars mean."
+#| fig-height: 5
+#| eval: false
+# ggplot(dat, aes(x, y)) + geom_point()
+```
+
+{{< pagebreak >}}
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
+
+{{< pagebreak >}}
+
+# Supplementary material {.unnumbered}
+
+<!--
+Long tables belong here, not in the main document. Keep a summary in the body and move the
+full listing here. Use the suppfig and supptbl cross-reference kinds declared in the YAML.
+-->

@@ -1,0 +1,42 @@
+# config.yaml — an example, filled in. Copy it, edit it, and pass it to scaffold_document().
+#
+# `scaffold.R` stamps the identity fields into document titles, paths, and YAML headers when
+# the project is created. Everything else is read at run time by R/0_setup.R, so it can be
+# changed later by editing this file rather than by editing the documents.
+
+# --- Identity -------------------------------------------------------------------------
+PROJECT_TITLE: "Demersal distribution of beaked redfish in the Barents Sea"
+PROJECT_SLUG: "redfish-distribution"
+PROJECT_YEAR: 2026
+
+# --- Authors --------------------------------------------------------------------------
+# The first author is treated as corresponding.
+AUTHORS:
+  - name: "Jane Doe"
+    email: "jane.doe@example.org"
+    orcid: "0000-0000-0000-0000"
+    affiliation: imr
+  - name: "John Roe"
+    email: "john.roe@example.org"
+    orcid: ""
+    affiliation: imr
+
+AFFILIATIONS:
+  - id: imr
+    name: "Institute of Marine Research, Norway"
+
+# --- Document -------------------------------------------------------------------------
+LANGUAGE: en-US
+CSL: "../assets/ices_jms.csl"
+BIBLIOGRAPHY: "../assets/references.bib"
+
+# --- Figures --------------------------------------------------------------------------
+FIG_WIDTH_SINGLE_MM: 85
+FIG_WIDTH_DOUBLE_MM: 170
+BASE_SIZE: 12
+
+# --- Paths (relative to the project root) ---------------------------------------------
+DATA_DIR: "data"
+SOURCE_DIR: "data/source"
+OUTPUT_DIR: "data/output"
+FIGURES_DIR: "figures"

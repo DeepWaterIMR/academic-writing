@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cruise Report"
+  short_description: "Document a survey: design, gear, sampling, and what was caught."
+  default_prompt: "Write a cruise report for this survey — a metadata report of how the data were collected, not an analysis of them."

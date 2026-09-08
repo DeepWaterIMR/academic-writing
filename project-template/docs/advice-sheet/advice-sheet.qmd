@@ -1,0 +1,165 @@
+---
+title: "{{PROJECT_TITLE}}"
+date: today
+published-title: "Version"
+lang: {{LANGUAGE}}
+bibliography: {{BIBLIOGRAPHY}}
+csl: {{CSL}}
+output-file: "{{PROJECT_SLUG}}-advice-sheet"
+params:
+  assessment_year: {{PROJECT_YEAR}}   # Year the assessment was carried out
+  advice_year: 2027                   # Year the advice applies to
+  prev_advice: 0                      # Previous advice, tonnes
+  prev_tac: 0                         # Most recent agreed TAC, tonnes
+format:
+  html:
+    embed-resources: true
+    toc: true
+    toc-depth: 2
+    theme: cosmo
+    page-layout: full
+    css: ../assets/ices_advice.css
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 4
+  docx:
+    # Two templates ship with this pack. Pick the body the sheet is going to:
+    #   ../assets/advice_template_imr.docx   — Institute of Marine Research
+    #   ../assets/advice_template_ices.docx  — ICES
+    reference-doc: ../assets/advice_template_imr.docx
+    # The IMR template expects body text in Word's "Normal" style; this filter puts it
+    # there. Remove the filter when rendering against the ICES template.
+    filters:
+      - ../assets/normal-style.lua
+    number-sections: false
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 4
+    fig-dpi: 300
+    fig-align: left
+prefer-html: true
+crossref:
+  fig-title: '**Figure**'
+  tbl-title: '**Table**'
+  title-delim: '**:**'
+execute:
+  echo: false
+  warning: false
+  message: false
+editor_options:
+  chunk_output_type: console
+---
+
+<!--
+An advice sheet is the short public document that carries the catch advice to managers. It
+is heavily standardised: the section order below is the one ICES uses and IMR follows, and
+readers navigate by it. Do not reorder or rename the sections.
+
+Every number in an advice sheet is inline R, without exception. The sheet is regenerated
+each year against a new assessment, it is quoted directly by managers and press, and a
+stale number is a public error.
+-->
+
+```{r setup}
+#| include: false
+knitr::opts_knit$set(root.dir = here::here())
+source(here::here("R", "0_setup.R"))
+source(here::here("R", "report_helpers.R"))
+```
+
+```{r advice-values}
+#| include: false
+#| eval: false
+# Every value quoted below, derived once from the assessment output: the advised catch, the
+# stock status relative to each reference point, the change from last year's advice, and
+# the catch-scenario table.
+#
+# ay      <- params$advice_year
+# advice  <- ...
+# change  <- 100 * (advice - params$prev_advice) / params$prev_advice
+```
+
+# Advice on fishing opportunities
+
+<!--
+The advice itself, in the first sentence. State the basis (MSY approach, precautionary
+approach, or a management plan), the advised catch, and the change from the previous
+advice — "Based on the MSY approach, catches in <advice year> should be no more than
+<advised catch> tonnes." Both values are inline R, derived above; see the
+academic-advice-sheet skill for the syntax.
+-->
+
+# Stock development over time
+
+```{r}
+#| label: fig-stock-development
+#| fig-cap: "Summary of the stock assessment. Catches, recruitment, fishing pressure, and spawning-stock biomass, with 95% confidence intervals. Horizontal lines mark the reference points."
+#| fig-height: 5
+#| eval: false
+```
+
+# Catch scenarios
+
+<!--
+Where a caption has to carry the advice year, build it as a string object in the
+advice-values chunk above and reference it with `#| tbl-cap: !expr cap_catch_scenarios`.
+That avoids inline sprintf() and its doubled-%% escaping. Note that a !expr caption is
+evaluated even when the chunk itself has `eval: false`, so the object must exist.
+
+    cap_catch_scenarios <- paste0("Annual catch scenarios for ", ay, ". Catches in tonnes.")
+-->
+
+```{r}
+#| label: tbl-catch-scenarios
+#| tbl-cap: "Annual catch scenarios. Catches are in tonnes."
+#| eval: false
+```
+
+# Basis of the advice
+
+# Quality of the assessment
+
+<!-- What the assessment does not capture, and how much confidence the advice deserves. -->
+
+# Issues relevant for the advice
+
+<!-- Bycatch, mixed fisheries, non-fisheries pressures, and data gaps. -->
+
+# Reference points
+
+```{r}
+#| label: tbl-reference-points
+#| tbl-cap: "Reference points, their values, and their technical basis."
+#| eval: false
+```
+
+# Basis of the assessment
+
+## Software and reproducibility
+
+The assessment was run in `r R.version.string` [@rcoreteam]. This sheet was compiled with
+Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the assessment
+output.
+
+This document and the associated analyses were created with researcher-supervised generative
+AI (<!-- MODEL -->). The authors specified and checked the assessment, and reviewed, edited,
+and approved all AI-assisted content, for which they take full responsibility.
+
+# History of the advice, catch, and management
+
+```{r}
+#| label: tbl-advice-history
+#| tbl-cap: "Advised catch, agreed TAC, and reported catch by year, in tonnes."
+#| eval: false
+```
+
+# Summary of the assessment
+
+```{r}
+#| label: tbl-assessment-summary
+#| tbl-cap: "Assessment summary: catch, recruitment, fishing pressure, and spawning-stock biomass by year."
+#| eval: false
+```
+
+# Sources and references
+
+::: {#refs}
+:::

@@ -1,0 +1,133 @@
+---
+title: "{{PROJECT_TITLE}}"
+subtitle: "Data report"
+author:
+{{AUTHOR_BLOCK}}
+affiliations:
+{{AFFILIATION_BLOCK}}
+date: today
+published-title: "Version"
+lang: {{LANGUAGE}}
+bibliography: {{BIBLIOGRAPHY}}
+csl: {{CSL}}
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-summary: "Show code"
+    code-tools: true
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 5
+    output-file: "{{PROJECT_SLUG}}-data-report"
+execute:
+  warning: false
+  message: false
+editor_options:
+  chunk_output_type: console
+---
+
+<!--
+A data report is an internal, fully reproducible analysis. Every analysis chunk stays
+visible but collapsed, so the document doubles as its own methods appendix.
+
+Note what is NOT in the YAML: `echo: false`. Setting it would silence every chunk and
+`code-fold` would do nothing. That single difference is what makes this a data report
+rather than a manuscript.
+-->
+
+```{r setup}
+#| include: false
+knitr::opts_knit$set(root.dir = here::here())
+source(here::here("R", "0_setup.R"))
+source(here::here("R", "report_helpers.R"))
+```
+
+# Purpose
+
+<!--
+What question this report answers, for whom, and what it will be used for downstream — an
+assessment input, a manuscript, a decision. State the data source and the version of it.
+-->
+
+# Data
+
+```{r}
+#| label: load-data
+#| eval: false
+# Read the compiled data. Everything downstream derives from this object, so a reader can
+# see exactly what the report was built on.
+dat <- readRDS(file.path(output_dir, "compiled_data.rds"))
+```
+
+<!--
+Describe what the data are, how many records, over what period and area, and what was
+excluded and why. Every count comes from inline R against the object loaded above — record
+counts, station counts, the first and last year — never typed.
+-->
+
+```{r}
+#| label: tbl-data-overview
+#| tbl-cap: "Overview of the data by year and survey. State the point of the table, and give the sample sizes."
+#| eval: false
+```
+
+# Analysis
+
+## <!-- First analysis step -->
+
+```{r}
+#| label: fig-example
+#| fig-cap: "State what the figure shows. Give n and say what the error bars mean."
+#| fig-height: 5
+#| eval: false
+```
+
+<!--
+Interpret the figure for the reader in a short sentence with the cross-reference at the
+end. Do not leave the interpretation to them.
+-->
+
+# Results and recommendations
+
+<!--
+What the analysis produced, what should be used downstream, and what should not. Be
+explicit about which values are ready to use and which are provisional.
+-->
+
+# Software and reproducibility
+
+This report was produced in `r R.version.string` [@rcoreteam], with the tidyverse packages
+[@tidyverse] and ggplot2 [@ggplot2]. It was compiled with Quarto [@quarto] and rendered by
+knitr [@knitr], and is reproducible from the source data.
+
+<!--
+Cite every package that influenced the results, from toBibtex(citation("pkg")). Then the AI
+disclosure — name the model you are, and ADD to an existing list rather than replacing it.
+-->
+
+This document and the associated analyses were created with researcher-supervised generative
+AI (<!-- MODEL -->). The authors designed the study, specified and checked the analyses, and
+reviewed, edited, and approved all AI-assisted content, for which they take full
+responsibility.
+
+# References
+
+::: {#refs}
+:::
+
+# Appendix: analysis scripts {.appendix}
+
+<!--
+The complete scripts, folded. This is what makes the report auditable: a reader can see not
+only the chunks in the document but the pipeline that produced its inputs. Point `code =`
+at each script in R/, in run order, and give each listing a label and a caption.
+-->
+
+```{r compile-appendix, code = readLines(here::here("R", "1_data.R")), eval = FALSE, echo = TRUE}
+#| lst-label: lst-compile-script
+#| lst-cap: "Complete compilation script used to acquire, filter, and compile the data."
+#| code-fold: true
+#| code-summary: "Show full compilation script"
+```

@@ -1,0 +1,147 @@
+---
+subtitle: "Assessment report"
+date: today
+published-title: "Version"
+lang: {{LANGUAGE}}
+bibliography: {{BIBLIOGRAPHY}}
+csl: {{CSL}}
+params:
+  assessment_year: {{PROJECT_YEAR}}   # Year the assessment is carried out
+  advice_year: 2027                   # Year advice is given for
+  prev_advice_year: 2026              # Year advice was last given
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 3
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 4
+  docx:
+    # A working-group report uses the group's own template. Put it in docs/assets/ and
+    # name it here — ICES and JRN-AFWG issue theirs each year, and the styles change.
+    # reference-doc: ../assets/wg-report-template.docx
+    number-sections: false
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 4
+    fig-dpi: 300
+    fig-align: left
+prefer-html: true
+crossref:
+  chapters: true
+execute:
+  echo: false
+  warning: false
+  message: false
+editor_options:
+  chunk_output_type: console
+---
+
+<!--
+An assessment report is a CHAPTER of a working-group report, so it has no YAML title: the
+chapter heading below is the title, and the group's own template supplies the styles.
+
+Float numbering is external — the working group assigns "Table 6.8", "Figure 6.23" — so
+`number-sections: false` and the assigned number is written into the caption text. Label
+slugs mirror the assigned number so the two cannot drift.
+
+Sections follow the ICES/AFWG stock-chapter order. Check the current year's guidance before
+using this: the sections are stable but the details are revised at each benchmark.
+-->
+
+```{r setup}
+#| include: false
+knitr::opts_knit$set(root.dir = here::here())
+source(here::here("R", "0_setup.R"))
+source(here::here("R", "report_helpers.R"))
+```
+
+```{r assessment-values}
+#| include: false
+#| eval: false
+# Every headline number the chapter quotes — SSB, F, recruitment, the advice — derived
+# once, from the model output. Nothing in the prose is typed by hand: an assessment chapter
+# is rewritten each year against a new model run, and a stale number is the classic error.
+```
+
+# {{PROJECT_TITLE}}
+
+## Status of the fisheries
+
+<!-- Catches, fleets, and management measures in the most recent years. -->
+
+## Data used in the assessment
+
+### Catch data
+
+### Survey data
+
+### Biological data
+
+## Assessment
+
+### Model settings
+
+### Model diagnostics
+
+### Assessment results
+
+<!--
+Report direction, magnitude, and uncertainty, with the cross-reference at the end of the
+sentence — "Spawning-stock biomass in the assessment year was estimated at X t, above MSY
+B~trigger~ (@fig-6-1-ssb)". Both the year and the value are inline R, derived above.
+-->
+
+## Comments to the assessment
+
+<!-- What the assessment does not capture, and how much confidence it deserves. -->
+
+## Biological reference points
+
+## Management advice
+
+## Future development of the assessment
+
+<!-- Issues for the next benchmark. Be specific enough to act on. -->
+
+## Software and reproducibility
+
+The assessment was run in `r R.version.string` [@rcoreteam]. The report was compiled with
+Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the model output.
+
+This document and the associated analyses were created with researcher-supervised generative
+AI (<!-- MODEL -->). The authors specified and checked the assessment, and reviewed, edited,
+and approved all AI-assisted content, for which they take full responsibility.
+
+## References
+
+<!--
+Working-group reports usually list references in the group's own format rather than
+through a bibliography. Where the group accepts a rendered bibliography, use:
+
+::: {#refs}
+:::
+-->
+
+{{< pagebreak >}}
+
+## Tables and figures
+
+<!--
+Every float goes here, in the order the working group numbered them, with the assigned
+number written into the caption. Do not renumber them to match the text — the number is the
+group's, and other chapters cross-reference it.
+-->
+
+```{r}
+#| label: tbl-catch-at-age
+#| tbl-cap: "Table X.1. Catch numbers-at-age. Values are in thousands."
+#| eval: false
+```
+
+```{r}
+#| label: fig-ssb
+#| fig-cap: "Figure X.1. Estimated spawning-stock biomass with 95% confidence intervals, and the reference points."
+#| fig-width: 8
+#| fig-height: 4
+#| eval: false
+```

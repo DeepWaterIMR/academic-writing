@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Report"
+  short_description: "Write a reproducible internal analysis report with folded code."
+  default_prompt: "Write an internal data report for this analysis, with every chunk visible but collapsed and the full scripts in a folded appendix."

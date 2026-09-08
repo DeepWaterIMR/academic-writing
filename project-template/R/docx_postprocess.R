@@ -46,12 +46,21 @@
 .docx_write <- function(handle, path) {
   xml2::write_xml(handle$doc, handle$xml_path)
 
+  # zipr() takes paths relative to the working directory, so the archive is built from
+  # inside the extraction folder. The destination must be resolved to an absolute path
+  # BEFORE that, or it lands inside the extraction folder instead.
+  # normalizePath() leaves a non-existent path alone, so the absolute form is built from
+  # the directory, which does exist.
+  .absolute <- function(p) {
+    file.path(normalizePath(dirname(p), winslash = "/", mustWork = TRUE), basename(p))
+  }
+  path <- .absolute(path)
   tmp <- paste0(path, ".tmp")
   files <- list.files(handle$dir, all.files = TRUE, recursive = TRUE, no.. = TRUE)
-  withr_wd <- setwd(handle$dir)
-  on.exit(setwd(withr_wd), add = TRUE)
-  zip::zipr(zipfile = normalizePath(tmp, mustWork = FALSE), files = files, mode = "mirror")
-  setwd(withr_wd)
+  previous_wd <- setwd(handle$dir)
+  on.exit(setwd(previous_wd), add = TRUE)
+  zip::zipr(zipfile = tmp, files = files, mode = "mirror")
+  setwd(previous_wd)
 
   # A .docx that will not open gives no useful error, so confirm the archive re-reads
   # before the original is replaced.

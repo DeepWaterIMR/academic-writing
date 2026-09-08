@@ -1,0 +1,94 @@
+% IMR cruise-report styling for the PDF output. The Word output is produced
+% from nettrapport_template.docx; this file reproduces the same cover, closing
+% page, and colours in LaTeX so that the two look like the same report.
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+% Needed for fig-pos/tbl-pos: "H" (below), which pins every figure and table
+% exactly where it is written rather than letting LaTeX's default float
+% placement drift it onto a later page. The report already sequences each
+% figure and table right after the prose that refers to it, so "H" keeps that
+% order instead of overriding it.
+\usepackage{float}
+
+% The table of contents gets its own page.
+\apptocmd{\tableofcontents}{\clearpage}{}{}
+
+\definecolor{imrteal}{HTML}{31B7BC}
+\definecolor{imrblue}{HTML}{123274}
+\definecolor{imrgrey}{HTML}{5A5A5A}
+
+% Section headings in the institute's blue, and no "Chapter" label: the report
+% uses the article class so that the PDF numbering matches the Word output.
+\titleformat{\section}{\Large\bfseries\color{imrblue}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{imrblue}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\bfseries\color{imrblue}}{\thesubsubsection}{0.7em}{}
+
+\captionsetup{font=small, labelfont={bf,color=imrblue}, labelsep=period}
+
+% Running header on every page except the cover.
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{imrteal}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\small\color{imrgrey}Deep Pelagic Survey 2026}
+\fancyhead[R]{\small\color{imrgrey}Cruise 2026001011}
+\fancyfoot[C]{\small\color{imrgrey}\thepage}
+
+% Cover page, following the layout of nettrapport_template.docx: the logo and
+% a teal title at the top of a white band, the template's gradient filling the
+% page below them, and the chevron in the bottom corner.
+%
+% Pandoc would otherwise append the subtitle to \@title as a second line. This
+% header is emitted before Pandoc's own \providecommand, so defining \subtitle
+% here keeps the two strings separate and lets them be styled differently.
+\makeatletter
+\newcommand{\imrsubtitle}{}
+\providecommand{\subtitle}[1]{}
+\renewcommand{\subtitle}[1]{\renewcommand{\imrsubtitle}{#1}}
+
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+  % Everything on the cover is placed in paper coordinates. Ordinary vertical
+  % spacing is discarded at the top of a page, so the title block cannot be
+  % lifted above the text margin any other way.
+  \AddToShipoutPictureBG*{%
+    \put(0mm,22mm){%
+      \includegraphics[width=\paperwidth,height=220mm]{../assets/imr-cover-gradient.png}}%
+    \put(\dimexpr\paperwidth-40mm\relax,0mm){%
+      \includegraphics[width=40mm]{../assets/imr-chevron.png}}%
+  }%
+  \AddToShipoutPictureFG*{%
+    \put(25mm,\dimexpr\paperheight-12mm-130mm\relax){%
+      \begin{minipage}[b][130mm][t]{160mm}%
+        \sffamily\raggedright
+        \begin{minipage}[c]{26mm}%
+          \includegraphics[width=24mm]{../assets/imr-logo.png}%
+        \end{minipage}%
+        \hspace{6mm}%
+        \begin{minipage}[c]{\dimexpr160mm-32mm\relax}%
+          \raggedright
+          \fontsize{23}{28}\selectfont\bfseries\color{imrteal}\@title\par
+        \end{minipage}%
+        \par\vspace{22mm}
+        {\Large\bfseries\color{imrblue}\imrsubtitle\par}
+        \vspace{10mm}
+        {\small\color{black}\@author\par}
+        \vspace{7mm}
+        {\small\color{black}\@date\par}
+      \end{minipage}%
+    }%
+  }%
+  \null
+  \end{titlepage}
+  \clearpage
+}
+\makeatother

@@ -1,0 +1,211 @@
+---
+title: "{{PROJECT_TITLE}}"
+subtitle: "Cruise report"
+author:
+{{AUTHOR_BLOCK}}
+affiliations:
+{{AFFILIATION_BLOCK}}
+date: last-modified
+published-title: "Version"
+lang: {{LANGUAGE}}
+bibliography: {{BIBLIOGRAPHY}}
+csl: {{CSL}}
+params:
+  # Data are refreshed by R/1_data.R, not here; this document always renders from the
+  # snapshots in data/output/ so it works offline and away from the vessel.
+  cruise_id: "{{PROJECT_SLUG}}"
+format:
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 3
+    fig-width: {{FIG_WIDTH_DOUBLE}}
+    fig-height: 6
+  docx:
+    reference-doc: ../assets/nettrapport_template.docx
+    toc: false
+    number-sections: false
+    fig-dpi: 300
+  pdf:
+    pdf-engine: xelatex
+    documentclass: article
+    papersize: a4
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    linkcolor: imrblue
+    citecolor: imrblue
+    urlcolor: imrteal
+    fig-pos: "H"
+    tbl-pos: "H"
+    geometry:
+      - top=28mm
+      - bottom=25mm
+      - left=25mm
+      - right=25mm
+      - headsep=8mm
+    include-in-header: ../assets/imr-pdf-header.tex
+    include-after-body: ../assets/imr-pdf-lastpage.tex
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: false
+editor_options:
+  chunk_output_type: console
+---
+
+<!--
+A cruise report is a METADATA report. It documents how the data were collected, describes
+the survey, and shows enough of the catch to make the data interpretable. It is not an
+analysis of those data — that belongs in a data report or a manuscript.
+-->
+
+```{r setup}
+#| include: false
+knitr::opts_knit$set(root.dir = here::here())
+source(here::here("R", "0_setup.R"))
+source(here::here("R", "report_helpers.R"))
+```
+
+```{r snapshots}
+#| include: false
+#| eval: false
+# Load one local snapshot per data component, each with an empty-shape fallback so that the
+# document always renders even when a component has not been collected yet. R/1_data.R
+# fetches from the vessel's servers and writes these; this document never reads the server.
+read_snapshot <- function(name, empty = tibble::tibble()) {
+  path <- file.path(output_dir, paste0(name, ".rds"))
+  if (file.exists(path)) readRDS(path) else empty
+}
+
+stations <- read_snapshot("stations")
+catches  <- read_snapshot("catches")
+snapshot_date <- max(c(as.Date(NA), file.info(list.files(output_dir, full.names = TRUE))$mtime),
+                     na.rm = TRUE)
+```
+
+```{r summaries}
+#| include: false
+#| eval: false
+# Derive every value the prose quotes. A cruise report is rewritten many times while data
+# are still arriving, so nothing may be typed by hand.
+```
+
+::: {.content-visible when-format="docx"}
+![Institute of Marine Research](../assets/imr-logo.png){width=1.65in fig-align="left"}
+:::
+
+::: {.callout-note title="Living cruise report"}
+This report is built from local snapshots. Re-run `Rscript R/1_data.R` to refresh them from
+the vessel's servers, then render again.
+:::
+
+{{< pagebreak >}}
+
+# Summary {.unnumbered}
+
+<!--
+What the survey was, when and where it took place, what was collected, and anything that
+went wrong. Almost every value here is inline R.
+-->
+
+# Introduction
+
+<!-- Why the survey was carried out, its objectives, and the programme it belongs to. -->
+
+# Material and methods
+
+## Timing, spatial extent, and survey design
+
+```{r}
+#| label: tbl-survey-design
+#| tbl-cap: "Survey design: area, period, planned and realised station numbers by stratum."
+#| eval: false
+```
+
+```{r}
+#| label: fig-overview
+#| fig-cap: "Station positions. Symbols show gear type; the survey area is outlined."
+#| fig-height: 6.5
+#| eval: false
+# Maps use ggOceanMaps.
+# basemap(limits = c(...), bathymetry = TRUE) + ggspatial::geom_spatial_point(...)
+```
+
+## Gear and trawling
+
+## Biological sampling
+
+## Hydrographic and acoustic sampling
+
+## Software and reproducibility
+
+This report was produced in `r R.version.string` [@rcoreteam], compiled with Quarto [@quarto]
+and rendered by knitr [@knitr]. Raw records and instrument files are read from the research
+vessel's servers by `R/1_data.R`; the report itself is rendered from structured local
+snapshots and can be reproduced without a server connection.
+
+This document and the associated analyses were created with researcher-supervised generative
+AI (<!-- MODEL -->). The authors designed the survey, specified and checked the analyses, and
+reviewed, edited, and approved all AI-assisted content, for which they take full
+responsibility.
+
+# Results
+
+<!--
+An overview of what was collected, not an analysis of it. Composition, length
+distributions, station coverage, instrument performance.
+-->
+
+## Catch composition
+
+```{r}
+#| label: fig-composition
+#| fig-cap: "Composition of the qualified catch by taxon. Bars show the share of total catch mass; n = … hauls."
+#| fig-height: 6
+#| eval: false
+```
+
+## Length distributions
+
+## Hydrography
+
+# Discussion
+
+<!--
+What worked, what did not, and what this means for the usability of the data. Gear
+problems, weather losses, and coverage gaps belong here, stated plainly — the next user of
+these data needs to know.
+-->
+
+{{< pagebreak >}}
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
+
+{{< pagebreak >}}
+
+# Appendices {.unnumbered}
+
+## Station list {.unnumbered}
+
+<!-- Long tables belong here, not in the body. -->
+
+```{r}
+#| label: tbl-stations
+#| tbl-cap: "Complete station list: serial number, date, position, depth, gear, and duration."
+#| eval: false
+# table_or_status(stations, "Complete station list.", longtable = TRUE, font_size = 8)
+```
+
+## Total catch {.unnumbered}
+
+```{r}
+#| label: tbl-total-catch
+#| tbl-cap: "Total catch by taxon, in numbers and mass."
+#| eval: false
+```

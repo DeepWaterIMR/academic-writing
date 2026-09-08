@@ -1,0 +1,4 @@
+interface:
+  display_name: "Assessment Report"
+  short_description: "Write a stock assessment chapter for a working group report."
+  default_prompt: "Write the annual stock assessment chapter: fisheries status, data, model settings and diagnostics, results, reference points, and advice."

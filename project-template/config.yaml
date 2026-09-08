@@ -23,8 +23,8 @@ AFFILIATIONS:
 
 # --- Document -------------------------------------------------------------------------
 LANGUAGE: en-US                             # en-US or en-GB; match the prose to it
-CSL: "assets/ices_jms.csl"                  # Citation style, relative to the .qmd
-BIBLIOGRAPHY: "assets/references.bib"       # BibTeX file, relative to the .qmd
+CSL: "../assets/ices_jms.csl"                  # Citation style, relative to the .qmd
+BIBLIOGRAPHY: "../assets/references.bib"       # BibTeX file, relative to the .qmd
 
 # --- Figures --------------------------------------------------------------------------
 # ICES Journal of Marine Science column widths. Draw figures at one width or the other;
