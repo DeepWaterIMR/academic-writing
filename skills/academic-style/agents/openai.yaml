@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Writing Style"
+  short_description: "Write and revise scientific prose in ecology and fisheries science."
+  default_prompt: "Revise this text to scientific academic style: accurate, concise, correctly hedged, with proper tense, numbers, units, species names, and figure and table wording."
