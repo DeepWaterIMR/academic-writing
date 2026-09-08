@@ -1,0 +1,40 @@
+# config.yaml — project settings, read at run time by R/0_setup.R.
+#
+# Edit settings here rather than in the documents. `scaffold.R` stamps the identity fields
+# into document titles, paths, and YAML headers when the project is created; everything else
+# is read whenever a document is rendered.
+
+# --- Identity -------------------------------------------------------------------------
+PROJECT_TITLE: "{{PROJECT_TITLE}}"          # Full title, used in document YAML
+PROJECT_SLUG: "{{PROJECT_SLUG}}"            # Lower-case kebab-case, used in paths and filenames
+PROJECT_YEAR: {{PROJECT_YEAR}}              # Year the work refers to
+
+# --- Authors --------------------------------------------------------------------------
+# The first author is treated as corresponding. Add more entries by copying the block.
+AUTHORS:
+  - name: "{{AUTHOR_NAME}}"
+    email: "{{AUTHOR_EMAIL}}"
+    orcid: "{{AUTHOR_ORCID}}"
+    affiliation: imr
+
+AFFILIATIONS:
+  - id: imr
+    name: "{{AFFILIATION}}"
+
+# --- Document -------------------------------------------------------------------------
+LANGUAGE: en-US                             # en-US or en-GB; match the prose to it
+CSL: "assets/ices_jms.csl"                  # Citation style, relative to the .qmd
+BIBLIOGRAPHY: "assets/references.bib"       # BibTeX file, relative to the .qmd
+
+# --- Figures --------------------------------------------------------------------------
+# ICES Journal of Marine Science column widths. Draw figures at one width or the other;
+# the journal explicitly discourages sizes in between.
+FIG_WIDTH_SINGLE_MM: 85
+FIG_WIDTH_DOUBLE_MM: 170
+BASE_SIZE: 12                               # ggplot2 base font size
+
+# --- Paths (relative to the project root) ---------------------------------------------
+DATA_DIR: "data"
+SOURCE_DIR: "data/source"
+OUTPUT_DIR: "data/output"
+FIGURES_DIR: "figures"

@@ -1,0 +1,59 @@
+# This project holds CODE, DOCS, and AGENT NOTES — never raw data or private paths.
+# data/, logs/, and figures/ keep their folder skeleton; their contents are ignored.
+
+# --- Data, outputs, logs, figures ---
+data/*
+!data/source/
+data/source/*
+!data/source/README.md
+!data/output/
+data/output/*
+!data/output/README.md
+logs/*
+!logs/README.md
+figures/*
+!figures/README.md
+
+# --- Raw data extensions (safety net) ---
+*.rds
+*.rda
+*.RData
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.prj
+*.parquet
+
+# --- Rendered output ---
+*.html
+*.pdf
+*.docx
+/*_files/
+**/*_files/
+.quarto/
+*.quarto_ipynb
+
+# --- Shipped assets are content, not output: bibliography, CSL styles, Word reference
+#     documents, LaTeX partials, Lua filters, and static figures the documents include ---
+!docs/assets/**
+
+# --- R / RStudio ---
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
