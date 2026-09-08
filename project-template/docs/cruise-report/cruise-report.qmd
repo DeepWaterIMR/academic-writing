@@ -98,8 +98,7 @@ snapshot_date <- max(c(as.Date(NA), file.info(list.files(output_dir, full.names 
 :::
 
 ::: {.callout-note title="Living cruise report"}
-This report is built from local snapshots. Re-run `Rscript R/1_data.R` to refresh them from
-the vessel's servers, then render again.
+This report is built from local snapshots. Re-run `Rscript R/1_data.R` to refresh them from the vessel's servers, then render again.
 :::
 
 {{< pagebreak >}}
@@ -142,15 +141,9 @@ went wrong. Almost every value here is inline R.
 
 ## Software and reproducibility
 
-This report was produced in `r R.version.string` [@rcoreteam], compiled with Quarto [@quarto]
-and rendered by knitr [@knitr]. Raw records and instrument files are read from the research
-vessel's servers by `R/1_data.R`; the report itself is rendered from structured local
-snapshots and can be reproduced without a server connection.
+This report was produced in `r R.version.string` [@rcoreteam], compiled with Quarto [@quarto] and rendered by knitr [@knitr]. Raw records and instrument files are read from the research vessel's servers by `R/1_data.R`; the report itself is rendered from structured local snapshots and can be reproduced without a server connection.
 
-This document and the associated analyses were created with researcher-supervised generative
-AI (<!-- MODEL -->). The authors designed the survey, specified and checked the analyses, and
-reviewed, edited, and approved all AI-assisted content, for which they take full
-responsibility.
+This document and the associated analyses were created with researcher-supervised generative AI (<!-- MODEL -->). The authors designed the survey, specified and checked the analyses, and reviewed, edited, and approved all AI-assisted content, for which they take full responsibility.
 
 # Results
 

@@ -105,10 +105,7 @@ to evaluate your results without going to read your references first.
 
 ## Software and reproducibility
 
-All analyses were done in `r R.version.string` [@rcoreteam]. Data were handled with the
-tidyverse packages [@tidyverse] and figures drawn with ggplot2 [@ggplot2]. The document was
-compiled with Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the
-source data.
+All analyses were done in `r R.version.string` [@rcoreteam]. Data were handled with the tidyverse packages [@tidyverse] and figures drawn with ggplot2 [@ggplot2]. The document was compiled with Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the source data.
 
 <!--
 Cite every package that influenced the results, using toBibtex(citation("pkg")) — never a
@@ -117,10 +114,7 @@ already listed, ADD yours rather than replacing it. See the ai-disclosure refere
 academic-style skill.
 -->
 
-This document and the associated analyses were created with researcher-supervised generative
-AI (<!-- MODEL -->). The authors designed the study, specified and checked the analyses, and
-reviewed, edited, and approved all AI-assisted content, for which they take full
-responsibility.
+This document and the associated analyses were created with researcher-supervised generative AI (<!-- MODEL -->). The authors designed the study, specified and checked the analyses, and reviewed, edited, and approved all AI-assisted content, for which they take full responsibility.
 
 # Results
 

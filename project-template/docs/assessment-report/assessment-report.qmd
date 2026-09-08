@@ -105,12 +105,9 @@ B~trigger~ (@fig-6-1-ssb)". Both the year and the value are inline R, derived ab
 
 ## Software and reproducibility
 
-The assessment was run in `r R.version.string` [@rcoreteam]. The report was compiled with
-Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the model output.
+The assessment was run in `r R.version.string` [@rcoreteam]. The report was compiled with Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the model output.
 
-This document and the associated analyses were created with researcher-supervised generative
-AI (<!-- MODEL -->). The authors specified and checked the assessment, and reviewed, edited,
-and approved all AI-assisted content, for which they take full responsibility.
+This document and the associated analyses were created with researcher-supervised generative AI (<!-- MODEL -->). The authors specified and checked the assessment, and reviewed, edited, and approved all AI-assisted content, for which they take full responsibility.
 
 ## References
 

@@ -98,19 +98,14 @@ explicit about which values are ready to use and which are provisional.
 
 # Software and reproducibility
 
-This report was produced in `r R.version.string` [@rcoreteam], with the tidyverse packages
-[@tidyverse] and ggplot2 [@ggplot2]. It was compiled with Quarto [@quarto] and rendered by
-knitr [@knitr], and is reproducible from the source data.
+This report was produced in `r R.version.string` [@rcoreteam], with the tidyverse packages [@tidyverse] and ggplot2 [@ggplot2]. It was compiled with Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the source data.
 
 <!--
 Cite every package that influenced the results, from toBibtex(citation("pkg")). Then the AI
 disclosure — name the model you are, and ADD to an existing list rather than replacing it.
 -->
 
-This document and the associated analyses were created with researcher-supervised generative
-AI (<!-- MODEL -->). The authors designed the study, specified and checked the analyses, and
-reviewed, edited, and approved all AI-assisted content, for which they take full
-responsibility.
+This document and the associated analyses were created with researcher-supervised generative AI (<!-- MODEL -->). The authors designed the study, specified and checked the analyses, and reviewed, edited, and approved all AI-assisted content, for which they take full responsibility.
 
 # References
 

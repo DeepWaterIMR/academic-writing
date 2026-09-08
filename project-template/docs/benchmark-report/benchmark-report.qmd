@@ -145,13 +145,9 @@ write it so that next year's stock coordinator can run the assessment from it al
 
 ## Software and reproducibility
 
-The model runs were carried out in `r R.version.string` [@rcoreteam]. The report was
-compiled with Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the
-model output and the input data.
+The model runs were carried out in `r R.version.string` [@rcoreteam]. The report was compiled with Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the model output and the input data.
 
-This document and the associated analyses were created with researcher-supervised generative
-AI (<!-- MODEL -->). The authors specified and checked the analyses, and reviewed, edited,
-and approved all AI-assisted content, for which they take full responsibility.
+This document and the associated analyses were created with researcher-supervised generative AI (<!-- MODEL -->). The authors specified and checked the analyses, and reviewed, edited, and approved all AI-assisted content, for which they take full responsibility.
 
 ## References
 

@@ -135,13 +135,9 @@ evaluated even when the chunk itself has `eval: false`, so the object must exist
 
 ## Software and reproducibility
 
-The assessment was run in `r R.version.string` [@rcoreteam]. This sheet was compiled with
-Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the assessment
-output.
+The assessment was run in `r R.version.string` [@rcoreteam]. This sheet was compiled with Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the assessment output.
 
-This document and the associated analyses were created with researcher-supervised generative
-AI (<!-- MODEL -->). The authors specified and checked the assessment, and reviewed, edited,
-and approved all AI-assisted content, for which they take full responsibility.
+This document and the associated analyses were created with researcher-supervised generative AI (<!-- MODEL -->). The authors specified and checked the assessment, and reviewed, edited, and approved all AI-assisted content, for which they take full responsibility.
 
 # History of the advice, catch, and management
 
