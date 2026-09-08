@@ -1,0 +1,21 @@
+# Files agents should not read from this repo. academic-writing contains no data, so
+# this list is a safety net rather than a rule with anything to catch today.
+#
+# Research data lives in the project folder the agent scaffolds for the user, never here.
+
+*.rds
+*.rda
+*.RData
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.parquet
+*.gpkg
+*.shp
+
+# Binary document templates — copied verbatim into scaffolded projects, never parsed.
+*.docx
