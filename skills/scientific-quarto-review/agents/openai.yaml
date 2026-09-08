@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific Quarto Review"
+  short_description: "Audit and revise scientific Quarto or R Markdown."
+  default_prompt: "Review this scientific Quarto or R Markdown document for scientific precision, concise prose, executable integrity, and render quality."
