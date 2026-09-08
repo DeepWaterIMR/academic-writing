@@ -29,6 +29,7 @@ Third-party assets bundled with this repository keep their own licences:
 - Word reference documents (`*.docx`), LaTeX partials, and the institute logo,
   chevron, and cover artwork (`imr-*.png`) under `skills/*/assets/` are
   institutional document templates and branding belonging to the Institute of
-  Marine Research and ICES. They are redistributed here so that reports can be
+  Marine Research, ICES, and the Joint Russian-Norwegian Arctic Fisheries
+  Working Group. They are redistributed here so that reports can be
   produced in the format those bodies require, and remain the property of those
   bodies. Do not use them for material that does not come from them.

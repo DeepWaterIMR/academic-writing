@@ -16,8 +16,11 @@ format:
     fig-width: {{FIG_WIDTH_DOUBLE}}
     fig-height: 4
   docx:
-    # ICES issues a workshop template each year. Put it in docs/assets/ and name it here.
-    # reference-doc: ../assets/wg-report-template.docx
+    # Pick the body this benchmark reports to. All three templates are in docs/assets/:
+    #   ../assets/ices_scientific_reports_template.docx  — ICES Scientific Reports
+    #   ../assets/jrn_afwg_report_template.docx          — JRN-AFWG
+    #   ../assets/nettrapport_template.docx              — internal IMR
+    reference-doc: ../assets/ices_scientific_reports_template.docx
     number-sections: false
     fig-width: {{FIG_WIDTH_DOUBLE}}
     fig-height: 4
@@ -35,23 +38,21 @@ editor_options:
 ---
 
 <!--
-A benchmark is a full revision of a stock assessment, done at a workshop on a three-to-five
-year cycle. It is not an annual assessment: the question is not "what is the state of the
-stock" but "is this the right assessment, and what should replace it".
+A benchmark is a full revision of a stock assessment, carried out at a workshop on a
+three-to-five-year cycle and reviewed by invited external experts. It is not an annual
+assessment: the question is not "what is the state of the stock" but "is this the right
+assessment, and what should replace it".
 
-The workshop's most important product is the STOCK ANNEX — the settings the annual
-assessment will use until the next benchmark. Write the annex as the deliverable and the
-chapter as the argument for it.
+This file is ONE STOCK CHAPTER. A benchmark report contains an executive summary, an expert
+group information table, one numbered chapter per stock, and the annexes — all assembled by
+the workshop chair. You write the chapter; the chair assembles the report. See the
+academic-benchmark-report skill for the report-level structure.
 
-Sections follow the ICES benchmark structure: data sources and quality, environmental and
-ecosystem issues, assessment methods explored, forecast, reference points, the recommended
-changes to the stock annex, and recommendations for future work. The external reviewers'
-report and the issue list are compiled by the workshop, not by the stock coordinator, and
-are referenced rather than written here.
-
-Confirm the current structure against the workshop's terms of reference and the most recent
-ICES benchmark reports before using this skeleton — the sections are stable, the details
-are not.
+The section order below follows the ICES benchmark chapter structure (WKBWNG 2026, ICES
+Scientific Reports 8:27, https://doi.org/10.17895/ices.pub.32019630). Confirm it against the
+workshop's terms of reference before using it: the outline is stable, the details are revised
+each round, and an age-structured stock and a biomass-dynamic stock diverge after the data
+sections.
 -->
 
 ```{r setup}
@@ -65,102 +66,147 @@ source(here::here("R", "report_helpers.R"))
 #| include: false
 #| eval: false
 # Every value the chapter quotes, derived from the model runs being compared. A benchmark
-# chapter compares several candidate models, so keep one object per candidate and derive
-# the comparison rather than typing it.
+# compares several candidate models, so keep one object per candidate and derive the
+# comparison rather than typing it.
 ```
 
 # {{PROJECT_TITLE}}
 
-## Terms of reference and issues addressed
+<!-- The ICES stock code goes on its own line under the chapter heading, e.g. reg.27.1-2. -->
 
-<!-- What the workshop was asked to resolve, and the issue list it worked from. -->
-
-## Stock identity and ecosystem context
-
-<!-- Stock boundaries, mixing, and the environmental and ecosystem issues considered. -->
-
-## Data
-
-### Catch and landings
-
-### Survey indices
+## Summary
 
 <!--
-State whether each index is relative or absolute, what effort denominator it uses, and how
-zero catches were handled. See the ecology-fisheries reference in the academic-style skill.
+What the benchmark changed, in one to three paragraphs: the input data that were revised, the
+model that was adopted, how the diagnostics compare with the previous assessment, and how the
+reference points were recalculated. Name the final accepted run so it can be found again.
 -->
 
-### Biological data
+## Introduction and stock status
 
-### Data quality and revisions
+<!--
+The assessment history: when the current method was adopted, what has been changed since and
+at which meetings, and the stock's current perceived state.
+-->
 
-<!-- What changed since the last benchmark, and why the revised series is preferred. -->
+## Key issues with the current assessment
 
-## Assessment methods
+<!--
+Why the benchmark was called. Tie each issue to the workshop's terms of reference, and say
+which sections below address it.
+-->
 
-### Candidate models
+## Stock identity
+
+<!-- Stock boundaries, mixing, morphs or ecotypes, and the genetic or tagging evidence. -->
+
+## Catch data
+
+<!--
+Sources of landings and discards, species-identification problems, allocation of unidentified
+catch, and national data considerations. State what was revised and why the revised series is
+preferred. Distinguish landings, catch, and removals.
+-->
+
+## Biological parameters
+
+### Age reading
+
+### Maturity
+
+### Weight at age
+
+### Natural mortality
+
+<!--
+For a biomass-dynamic stock these subsections collapse into a shorter treatment of growth,
+maturity, and productivity. Keep the ones the assessment actually uses.
+-->
+
+## Indices of abundance
+
+<!--
+Each index: the survey behind it, how it was constructed, its diagnostics, and its
+retrospective and sensitivity behaviour, ending with the index recommended for the
+assessment. State whether it is relative or absolute and what effort denominator it uses.
+-->
 
 ```{r}
-#| label: tbl-candidates
-#| tbl-cap: "Candidate assessment models: structure, data used, and the issue each addresses."
+#| label: fig-index
+#| fig-cap: "Figure X.1. Survey index with 95% confidence intervals, and the index it replaces."
 #| eval: false
 ```
 
-### Model exploration and diagnostics
+## Assessment method
+
+### Explorations
 
 <!--
-Report what was tried, including what failed. A benchmark that reports only the accepted
-model is not reviewable.
+What was tried, INCLUDING what failed: candidate model structures, the diagnostics that
+rejected them, and the convergence or estimability problems that made a formulation unusable.
+A benchmark that reports only the accepted model is not reviewable.
 -->
 
-### Model selection
+```{r}
+#| label: tbl-candidates
+#| tbl-cap: "Table X.1. Candidate assessment models: structure, data used, and the issue each addresses."
+#| eval: false
+```
 
-<!-- The criteria, applied in the order they were agreed, and the resulting choice. -->
+### Final model settings and diagnostics
 
-## Short-term forecast
+<!--
+The accepted configuration, and its diagnostics: residuals, retrospective, leave-one-out, and
+the model-specific acceptance checklist where the framework has one — SPiCT stocks have a
+published checklist that the chapter is expected to work through explicitly.
+-->
 
 ## Biological reference points
 
 ```{r}
 #| label: tbl-reference-points
-#| tbl-cap: "Proposed reference points, their basis, and the values they replace."
+#| tbl-cap: "Table X.2. Proposed reference points, their basis, and the values they replace."
 #| eval: false
 ```
 
-## Recommended stock annex
+## Short-term forecast settings
 
-<!--
-The settings the annual assessment will use: data inputs and their processing, model
-configuration, forecast assumptions, and reference points. This is the deliverable —
-write it so that next year's stock coordinator can run the assessment from it alone.
--->
+<!-- Assumptions, the recruitment model, and the intermediate-year assumption. -->
 
-## Recommendations for future work
+## Recommendations for the future
 
 <!-- Specific enough to become the next benchmark's issue list. -->
-
-## Reviewers' report and issue list
-
-<!-- Compiled by the workshop. Reference it; do not write it here. -->
 
 ## Software and reproducibility
 
 The model runs were carried out in `r R.version.string` [@rcoreteam]. The report was compiled with Quarto [@quarto] and rendered by knitr [@knitr], and is reproducible from the model output and the input data.
 
-This document and the associated analyses were created with researcher-supervised generative AI (<!-- MODEL -->). The authors specified and checked the analyses, and reviewed, edited, and approved all AI-assisted content, for which they take full responsibility.
+This chapter and the associated analyses were created with researcher-supervised generative AI (<!-- MODEL -->). The authors specified and checked the analyses, and reviewed, edited, and approved all AI-assisted content, for which they take full responsibility.
 
 ## References
 
 ::: {#refs}
 :::
 
+## Reviewer's report
+
+<!--
+Written by the invited external reviewers, not by the stock coordinator. Leave the heading in
+place and insert their text when it arrives; do not draft it on their behalf.
+-->
+
 {{< pagebreak >}}
 
 ## Tables and figures
 
+<!--
+Where the workshop collects floats at the end rather than in place. Keep the assigned number
+in the caption text.
+-->
+
 ```{r}
 #| label: fig-model-comparison
-#| fig-cap: "Figure X.1. Spawning-stock biomass estimated by each candidate model, with 95% confidence intervals."
+#| fig-cap: "Figure X.2. Spawning-stock biomass estimated by each candidate model, with 95% confidence intervals."
 #| fig-width: 8
 #| fig-height: 4
 #| eval: false

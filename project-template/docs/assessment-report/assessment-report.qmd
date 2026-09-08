@@ -17,9 +17,12 @@ format:
     fig-width: {{FIG_WIDTH_DOUBLE}}
     fig-height: 4
   docx:
-    # A working-group report uses the group's own template. Put it in docs/assets/ and
-    # name it here — ICES and JRN-AFWG issue theirs each year, and the styles change.
-    # reference-doc: ../assets/wg-report-template.docx
+    # Pick the body this chapter reports to. All three templates are in docs/assets/:
+    #   ../assets/jrn_afwg_report_template.docx          — JRN-AFWG
+    #   ../assets/ices_scientific_reports_template.docx  — ICES Scientific Reports
+    #   ../assets/nettrapport_template.docx              — internal IMR
+    # ICES and the working groups reissue their templates; check you have the current one.
+    reference-doc: ../assets/jrn_afwg_report_template.docx
     number-sections: false
     fig-width: {{FIG_WIDTH_DOUBLE}}
     fig-height: 4

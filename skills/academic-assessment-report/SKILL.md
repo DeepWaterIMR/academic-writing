@@ -2,7 +2,7 @@
 name: academic-assessment-report
 description: Write a stock assessment report chapter for ICES, AFWG, JRN-AFWG, or an internal IMR assessment — status of the fisheries, data used, model settings and diagnostics, results, reference points, and management advice, in the working group's Word template. Use when the user is writing up an annual assessment.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 license: MIT
 ---
 
@@ -28,16 +28,18 @@ scaffold_document("config.yaml", "../stock-assessment-2027", types = "assessment
 
 The skeleton is `docs/assessment-report/assessment-report.qmd`.
 
-**Get the working group's Word template**, put it in `docs/assets/`, and name it in the YAML:
+Three Word templates are copied into `docs/assets/`. Pick the one for the body this chapter
+reports to, in the YAML:
 
-```yaml
-format:
-  docx:
-    reference-doc: assets/wg-report-template.docx
-```
+| Body | Template |
+|---|---|
+| JRN-AFWG | `../assets/jrn_afwg_report_template.docx` |
+| ICES | `../assets/ices_scientific_reports_template.docx` |
+| Internal IMR | `../assets/nettrapport_template.docx` |
 
-No template ships with this pack, because the groups issue a new one each year and a stale
-one produces a document the group will reject.
+**ICES and the working groups reissue their templates.** Check that the shipped one is still
+current before you rely on it; if the group has issued a newer one, put that in `docs/assets/`
+and point `reference-doc:` at it instead.
 
 ## Step 2 — Three conventions that differ from other documents
 

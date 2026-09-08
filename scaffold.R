@@ -19,8 +19,10 @@
 
 # --- The document types this pack ships ---------------------------------------------------
 # `folder` is the subfolder of project-template/docs/ that holds the skeleton, and the name
-# it keeps in the scaffolded project. `skill` is the skill an agent reads for that type, and
-# `assets` are files copied from that skill's assets/ folder into docs/assets/.
+# it keeps in the scaffolded project. `skill` is the skill an agent reads for that type; its
+# whole assets/ folder is copied into docs/assets/. `extra_assets` names further files to
+# copy, as paths relative to skills/, so that a template shared by several document types
+# lives in one place rather than being duplicated across skill folders.
 DOCUMENT_TYPES <- list(
   "manuscript" = list(
     folder = "manuscript",
@@ -40,7 +42,10 @@ DOCUMENT_TYPES <- list(
   "assessment-report" = list(
     folder = "assessment-report",
     label  = "assessment report",
-    skill  = "academic-assessment-report"
+    skill  = "academic-assessment-report",
+    # The internal-IMR route uses the institute's web-report template, which the cruise
+    # report skill owns.
+    extra_assets = "academic-cruise-report/assets/nettrapport_template.docx"
   ),
   "advice-sheet" = list(
     folder = "advice-sheet",
@@ -50,7 +55,13 @@ DOCUMENT_TYPES <- list(
   "benchmark-report" = list(
     folder = "benchmark-report",
     label  = "benchmark report",
-    skill  = "academic-benchmark-report"
+    skill  = "academic-benchmark-report",
+    # A benchmark uses the same three templates as an assessment report.
+    extra_assets = c(
+      "academic-cruise-report/assets/nettrapport_template.docx",
+      "academic-assessment-report/assets/jrn_afwg_report_template.docx",
+      "academic-assessment-report/assets/ices_scientific_reports_template.docx"
+    )
   )
 )
 
@@ -209,13 +220,26 @@ scaffold_document <- function(config, target, types = "manuscript", pack = NULL,
 
   # --- Copy each type's assets into docs/assets/ ---------------------------------------
   if (!dry) {
+    dest <- file.path(target, "docs", "assets")
     for (x in chosen) {
       src <- file.path(pack, "skills", x$skill, "assets")
-      if (!dir.exists(src)) next
-      files <- list.files(src, full.names = TRUE, all.files = TRUE, no.. = TRUE)
-      files <- files[basename(files) != "README.md"]
+      files <- character()
+      if (dir.exists(src)) {
+        files <- list.files(src, full.names = TRUE, all.files = TRUE, no.. = TRUE)
+        files <- files[basename(files) != "README.md"]
+      }
+      # Templates shared with another document type, named relative to skills/.
+      if (!is.null(x$extra_assets)) {
+        extra <- file.path(pack, "skills", x$extra_assets)
+        missing_extra <- extra[!file.exists(extra)]
+        if (length(missing_extra)) {
+          warning("Missing shared asset: ", paste(x$extra_assets[!file.exists(extra)],
+                                                  collapse = ", "))
+        }
+        files <- c(files, extra[file.exists(extra)])
+      }
       if (length(files)) {
-        file.copy(files, file.path(target, "docs", "assets"), overwrite = TRUE, recursive = TRUE)
+        file.copy(files, dest, overwrite = TRUE, recursive = TRUE)
       }
     }
   }
