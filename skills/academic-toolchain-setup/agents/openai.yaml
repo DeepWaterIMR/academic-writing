@@ -1,0 +1,4 @@
+interface:
+  display_name: "Writing Toolchain Setup"
+  short_description: "Install Git, R, Quarto and a build toolchain for academic writing."
+  default_prompt: "Check which of Git, R, Quarto, and the build toolchain are installed on this machine, and walk me through installing what is missing."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Quarto Conventions"
+  short_description: "Reproducible Quarto + R document conventions and project structure."
+  default_prompt: "Set up or fix this Quarto document to follow reproducible academic conventions: project structure, YAML, bibliography, figure widths, inline R, and rendering."
