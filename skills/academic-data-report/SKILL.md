@@ -2,7 +2,7 @@
 name: academic-data-report
 description: Write an internal data report — a fully reproducible HTML analysis document where every analysis chunk is visible but collapsed, used to derive parameters or prepare data for an assessment, a model, or a manuscript. Use when the user wants to document an analysis internally rather than publish it.
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
 license: MIT
 ---
 
@@ -24,12 +24,18 @@ One YAML difference from every other type in this pack:
 ```yaml
 format:
   html:
+    toc: true
+    toc-title: "Document title"
     code-fold: true
     code-summary: "Show code"
 execute:
   warning: false
   message: false
 ```
+
+Set `toc-title` to the document's actual title so the HTML sidebar identifies the report
+while the reader scrolls. Keep it synchronized when the title changes; the scaffold uses
+`{{PROJECT_TITLE}}` for both values. Verify the rendered sidebar heading.
 
 **`echo: false` is absent, deliberately.** Setting it would silence every chunk and
 `code-fold` would do nothing. With the fold and no `echo: false`, every analysis step is

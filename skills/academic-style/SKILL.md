@@ -2,7 +2,7 @@
 name: academic-style
 description: Write, revise, or correct academic and scientific prose in ecology and fisheries science — accountability and AI-disclosure rules, tense, epistemic calibration, numbers, units, species names, and figure and table wording. Use whenever writing or editing a manuscript, report, advice sheet, abstract, or any scientific text, in any editor including MS Word; also use to pull non-academic AI writing back into scientific register.
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
 license: MIT
 ---
 
@@ -52,7 +52,15 @@ otherwise; then British English, applied consistently. Correct grammar and non-n
 constructions silently — except where the correction would change a scientific claim, a causal
 reading, a temporal relation, or a referent. Those get flagged, not fixed.
 
-### 5. Tense
+### 5. Voice and tense
+
+Prefer passive voice when the document lists fewer than two human authors, especially for
+study actions in Methods and Results. Do not use “we” to mean a human author plus an AI
+assistant: AI systems are not authors. With two or more authors, first-person plural may be
+used naturally. Preserve any explicit project or author voice preference. Direct statements
+such as “Catches declined” remain preferable to unnecessary passive constructions.
+
+Tense:
 
 - **Past** for Materials and Methods, Results, study-specific observations, and tentative
   interpretations. *"Sampling was conducted throughout the year."*

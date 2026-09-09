@@ -2,7 +2,7 @@
 
 # ✍️ academic-writing — Write scientific documents with AI agents
 
-<!-- version -->**Version 0.1.9** (2026-09-09)<!-- /version -->
+<!-- version -->**Version 0.1.10** (2026-09-09)<!-- /version -->
 
 
 **Teach your AI agent to write like a scientist — one style, one set of technical conventions, and six ready document templates.**

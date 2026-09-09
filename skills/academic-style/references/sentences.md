@@ -24,9 +24,12 @@ Remove any concluding sentence that merely repeats the preceding result.
 
 ## Voice
 
-Active first-person plural where it is natural — *"we estimated"*, *"we observed"* — and
-passive where the procedure or the result matters more than who did it. Both are correct
-scientific English.
+When fewer than two human authors are listed, prefer passive voice for study actions:
+*"Density was estimated"*, *"Samples were collected"*. Never count an AI assistant as a
+second author or use “we” to mean the author and the assistant. With two or more human
+authors, active first-person plural may be used where natural — *"we estimated"* — and
+passive where the procedure or result matters more than who did it. Keep direct statements
+such as *"Catches declined"*; this preference does not require passive voice in every sentence.
 
 **A project-specific voice rule overrides this.** Never introduce first-person plural into a
 document that deliberately avoids it.
