@@ -2,7 +2,7 @@
 name: academic-style
 description: Write, revise, or correct academic and scientific prose in ecology and fisheries science — accountability and AI-disclosure rules, tense, epistemic calibration, numbers, units, species names, and figure and table wording. Use whenever writing or editing a manuscript, report, advice sheet, abstract, or any scientific text, in any editor including MS Word; also use to pull non-academic AI writing back into scientific register.
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 license: MIT
 ---
 
@@ -109,9 +109,11 @@ A and D (Table 1)"*, not *"growth differed among diets (Table 1)"*.
 
 ### 10. Cite the software
 
-Base R and every package that influenced the results are cited in Materials and Methods, in
-the same section as the AI disclosure. Get the citation from `citation("pkg")` — never write
-one from memory. Report versions with inline code, not typed numbers.
+Base R and every package that influenced the results are cited in narrative prose in Materials
+and Methods, in the same section as the AI disclosure. Get the citation from
+`citation("pkg")` — never write one from memory — and put the resulting entries in the
+bibliography. Report versions with inline code, not typed numbers. Never dump formatted
+`citation()` output into the body as a replacement for citations and a reference list.
 
 ## Depth
 

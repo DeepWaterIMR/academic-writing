@@ -47,6 +47,11 @@ The software citations for the packages that influenced the results go in the sa
 or the one beside it. Take them from `citation("pkg")`; never write a citation from memory.
 See [`citations.md`](citations.md).
 
+Use the exact model names recorded by the researcher or exposed by the tool. Do not shorten a
+specific model to a generic family name, infer a version, or replace a researcher-supplied
+model list. If the model identity cannot be confirmed, leave a visible placeholder for the
+author rather than guessing.
+
 ## Appending your model — do not overwrite
 
 **If a disclosure already names one or more models, add yours to the list. Never replace what

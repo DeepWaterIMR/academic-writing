@@ -22,7 +22,7 @@ nocite: |
 The reference list renders where you put the div:
 
 ```markdown
-# References
+# References {.unnumbered}
 
 ::: {#refs}
 :::
@@ -51,8 +51,10 @@ make one style serve both.
 
 ## Software citations
 
-Base R and every package that influenced the results are cited, in Materials and methods,
-beside the AI disclosure.
+Base R and every package that influenced the results are cited in narrative prose, in
+Materials and methods, beside the AI disclosure. Report installed versions with inline R.
+Do not print the raw output of `citation()` into the report: it is source material for the
+BibTeX entries, not a substitute for in-text citations and a reference list.
 
 **Get the BibTeX from R, never from memory:**
 
@@ -76,6 +78,18 @@ writeLines(
 Then rename the keys to something stable and readable — `@ggplot2`, `@rcoreteam` — and check
 for duplicates. Some packages emit several entries; keep the one the maintainers ask you to
 cite.
+
+Group packages by what they did so the prose remains readable, for example data access,
+data handling, spatial analysis, figures, and document compilation. Every citation key used
+in that paragraph must resolve in the bibliography, and the document must contain an explicit
+unnumbered reference section:
+
+```markdown
+# References {.unnumbered}
+
+::: {#refs}
+:::
+```
 
 Report versions with inline R rather than typed numbers:
 

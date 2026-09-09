@@ -2,7 +2,7 @@
 name: academic-data-report
 description: Write an internal data report — a fully reproducible HTML analysis document where every analysis chunk is visible but collapsed, used to derive parameters or prepare data for an assessment, a model, or a manuscript. Use when the user wants to document an analysis internally rather than publish it.
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
 license: MIT
 ---
 
@@ -38,6 +38,19 @@ present and one click away, and the document doubles as its own methods appendix
 HTML is the only output. A data report that needs to become a Word document is usually a
 report for someone else, which means a different type.
 
+Before revising an existing report, enforce the shared metadata and publishing contract:
+
+- preserve or confirm the accountable human author and institutional affiliation;
+- add `published-title: "Version"` and verify that the rendered title block uses that label;
+- use ggOceanMaps for static maps, retaining project-supplied geometries unchanged;
+- cite R and every package that influenced the results in prose, with inline versions and
+  BibTeX entries obtained from `citation()`;
+- end the body with `# References {.unnumbered}` and an explicit `::: {#refs}` div before any
+  appendix.
+
+A generated list of raw `citation()` output does not satisfy the software-citation
+requirement. Neither does a generic byline such as “project analysis”.
+
 ## Step 1 — Scaffold
 
 ```r
@@ -57,8 +70,10 @@ The skeleton is `docs/data-report/data-report.qmd`.
    saying what it shows.
 4. **Results and recommendations** — which values should be used downstream, and which are
    provisional. Be explicit: this is what the reader came for.
-5. **Software and reproducibility** — package citations and the AI disclosure.
-6. **Appendix** — the full scripts.
+5. **Software and reproducibility** — narrative package citations with inline versions and
+   the exact researcher-confirmed AI model list.
+6. **References** — an unnumbered section backed by the document bibliography.
+7. **Appendix** — the full scripts.
 
 ## Step 3 — The appendix
 

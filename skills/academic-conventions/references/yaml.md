@@ -41,10 +41,15 @@ editor_options:
 
 Notes on the fields that matter:
 
+- **`author:` is a human byline.** Preserve the existing authors when revising a document.
+  Otherwise take names and affiliations from project configuration or explicit user input.
+  Never substitute a role such as “project analysis”, the report title, or an AI system; ask
+  if the accountable author is not recorded.
 - **`html` comes first** in `format:`. Quarto renders the first format by default, so the
   editor's Preview/Render button gives HTML with no arguments.
 - **`date: today`** with **`published-title: "Version"`** turns the date line into a version
-  stamp. Use `date: last-modified` where the document is updated in place.
+  stamp. Use `date: last-modified` where the document is updated in place. Inspect the
+  rendered title block and fail the review if it still says “Published”.
 - **`lang: en-US`** matches the American English default; set `en-GB` where the target
   requires British English, and change the prose to match.
 - **`fig-width: 6.69`** is 170 mm, the ICES double-column width. `3.35` is 85 mm, single
