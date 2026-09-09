@@ -3,7 +3,7 @@
 # ✍️ academic-writing — Write scientific documents with AI agents
 
 <!-- version -->
-**Version 0.1.12** (2026-09-09)
+**Version 0.1.13** (2026-09-09)
 <!-- /version -->
 
 
@@ -82,6 +82,7 @@ academic-writing is deliberately general-purpose. Domain machinery lives elsewhe
 
 - [**BAIT**](https://github.com/DeepWaterIMR/BAIT) — IMR Biotic data access, privacy, maps, life history.
 - [**index-template**](https://github.com/DeepWaterIMR/index-template) — sdmTMB spatiotemporal survey indices.
+- [**spict-template**](https://github.com/DeepWaterIMR/spict-template) — SPiCT biomass-dynamic stock assessments.
 - [**presentation-template**](https://github.com/DeepWaterIMR/presentation-template) — Quarto RevealJS slides for scientific presentations.
 
 Install whichever you need alongside; the skills stay out of each other's way.

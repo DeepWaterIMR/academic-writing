@@ -2,7 +2,7 @@
 name: academic-assessment-report
 description: Write a stock assessment report chapter for ICES, AFWG, JRN-AFWG, or an internal IMR assessment — status of the fisheries, data used, model settings and diagnostics, results, reference points, and management advice, in the working group's Word template. Use when the user is writing up an annual assessment.
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 license: MIT
 ---
 
@@ -81,6 +81,11 @@ Follow the group's list. In outline:
 
 ## Writing it
 
+- **For a SPiCT assessment, use [spict-template](https://github.com/DeepWaterIMR/spict-template)
+  alongside this skill.** That template owns the biomass-dynamic model inputs, fitting, and
+  diagnostics; this skill owns the working-group chapter. Derive the chapter's settings,
+  estimates, diagnostics, and reference-point statements from the selected SPiCT run rather
+  than recreating the model code in the report.
 - **Every headline number is inline R** — SSB, F, recruitment, the advice. The chapter is
   rewritten each year against a new model run, and a stale number is the classic error in this
   document type. Derive them all in one chunk from the model output.
