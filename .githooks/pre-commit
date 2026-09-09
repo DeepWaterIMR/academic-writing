@@ -58,7 +58,13 @@ git add -- "$version_file"
 # this commit: skip if the working copy differs from what is already staged.
 if [ -f "$readme" ] && git diff --quiet -- "$readme"; then
   tmp="$readme.versiontmp"
-  sed "s|<!-- version -->.*<!-- /version -->|<!-- version -->**Version $new_version** ($today)<!-- /version -->|" \
+  # The marker sits on its own line and the stamp on the next one: a line that
+  # opens with an HTML comment is an HTML block, and GitHub then leaves the
+  # markdown on it unrendered.
+  sed -e "/<!-- version -->/{" \
+      -e "n" \
+      -e "s|.*|**Version $new_version** ($today)|" \
+      -e "}" \
     "$readme" > "$tmp"
   if cmp -s "$tmp" "$readme"; then
     rm -f "$tmp"

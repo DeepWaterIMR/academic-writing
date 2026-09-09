@@ -2,7 +2,9 @@
 
 # ✍️ academic-writing — Write scientific documents with AI agents
 
-<!-- version -->**Version 0.1.10** (2026-09-09)<!-- /version -->
+<!-- version -->
+**Version 0.1.11** (2026-09-09)
+<!-- /version -->
 
 
 **Teach your AI agent to write like a scientist — one style, one set of technical conventions, and six ready document templates.**
@@ -25,14 +27,14 @@ academic-writing is a knowledge pack that turns a general coding agent (Claude C
 
    It clones the repo and copies the skills into your agent's global skills folder, once per machine. See [`skills/academic-writing-install`](skills/academic-writing-install/SKILL.md).
 
-2. **Start a document:**
+2. **Start a document within a project:**
 
    ```
-   Let's write a manuscript about beaked redfish distribution in the Barents Sea,
-   using academic-writing.
+   Let's write this year's assessment report for beaked redfish, using
+   academic-writing. The previous report is in docs/old_reports.
    ```
 
-   The agent agrees the argument and the figures with you, scaffolds a project, and starts writing.
+   The agent agrees the structure and the figures with you, scaffolds a project, and starts writing.
 
 3. **Or just fix some prose.** The style skill works on its own, in any editor:
 
@@ -58,11 +60,11 @@ academic-writing is a knowledge pack that turns a general coding agent (Claude C
 |---|---|
 | [`academic-style`](skills/academic-style/SKILL.md) | How the prose must read. Ten rules, plus eight reference files on IMRaD structure, sentences, distinctions, citations, floats, field conventions, AI disclosure, and checklists |
 | [`academic-conventions`](skills/academic-conventions/SKILL.md) | How the document is built. Project structure, YAML, bibliography and CSL, packages, rendering, Git |
-| [`academic-manuscript`](skills/academic-manuscript/SKILL.md) | A paper for journal submission |
+| [`academic-manuscript`](skills/academic-manuscript/SKILL.md) | Helps initiate paper writing for journal submission |
 | [`academic-data-report`](skills/academic-data-report/SKILL.md) | An internal reproducible analysis, every chunk visible but folded |
 | [`academic-cruise-report`](skills/academic-cruise-report/SKILL.md) | A survey metadata report, with Word output for the institute web-report system |
 | [`academic-assessment-report`](skills/academic-assessment-report/SKILL.md) | A stock assessment chapter for ICES, AFWG, JRN-AFWG, or IMR |
-| [`academic-advice-sheet`](skills/academic-advice-sheet/SKILL.md) | A fishing-opportunities advice sheet, IMR or ICES |
+| [`academic-advice-sheet`](skills/academic-advice-sheet/SKILL.md) | A fishing-opportunities advice sheet, IMR, JRN-AFWG, or ICES |
 | [`academic-benchmark-report`](skills/academic-benchmark-report/SKILL.md) | A full revision of an assessment method, and its stock annex |
 | [`scientific-quarto-review`](skills/scientific-quarto-review/SKILL.md) | Review and audit an existing `.qmd` or `.Rmd` |
 | [`academic-toolchain-setup`](skills/academic-toolchain-setup/SKILL.md) | Install Git, R, Quarto, Rtools, TinyTeX. Windows first |
@@ -80,6 +82,7 @@ academic-writing is deliberately general-purpose. Domain machinery lives elsewhe
 
 - [**BAIT**](https://github.com/DeepWaterIMR/BAIT) — IMR Biotic data access, privacy, maps, life history.
 - [**index-template**](https://github.com/DeepWaterIMR/index-template) — sdmTMB spatiotemporal survey indices.
+- [**presentation-template**](https://github.com/DeepWaterIMR/presentation-template) — Quarto RevealJS slides for scientific presentations.
 
 Install whichever you need alongside; the skills stay out of each other's way.
 
