@@ -3,7 +3,7 @@
 # ✍️ academic-writing — Write scientific documents with AI agents
 
 <!-- version -->
-**Version 0.1.13** (2026-09-09)
+**Version 0.1.14** (2026-09-09)
 <!-- /version -->
 
 
@@ -86,6 +86,8 @@ academic-writing is deliberately general-purpose. Domain machinery lives elsewhe
 - [**presentation-template**](https://github.com/DeepWaterIMR/presentation-template) — Quarto RevealJS slides for scientific presentations.
 
 Install whichever you need alongside; the skills stay out of each other's way.
+
+**index-template and spict-template build *on* academic-writing** rather than beside it: they generate projects in this pack's layout and defer to its style and document skills. spict-template goes further and calls `scaffold_document()` directly, overlaying its SPiCT layer on the project that produces, so there is one copy of the shared layout, helpers, and rendering pipeline and it lives here. A fix to `docs/render.R`, `R/0_setup.R`, or a document skeleton belongs in this repo; the analyses that fill them belong in theirs. The chain runs BAIT → index-template → spict-template: Biotic data becomes a survey index, the index becomes a stock assessment, and academic-writing turns each stage into a document someone can read.
 
 ## 🚨 You are still in charge
 

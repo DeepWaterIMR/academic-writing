@@ -63,19 +63,67 @@ stale number is a public error.
 knitr::opts_knit$set(root.dir = here::here())
 source(here::here("R", "0_setup.R"))
 source(here::here("R", "report_helpers.R"))
+
+ensure_packages("flextable", "officer", "icesAdvice")
+
+# Advice-sheet tables carry real subscripts, merged group rows, and footnotes, and Word clips
+# a table wider than the text column rather than reflowing it. Set the house defaults once,
+# and size figures to the column for Word output.
+flextable::set_flextable_defaults(
+  font.family = "Calibri", font.size = 9, table.layout = "fixed",
+  border.color = "black", big.mark = " ", decimal.mark = ".", padding = 2
+)
+if (identical(knitr::opts_knit$get("rmarkdown.pandoc.to"), "docx")) {
+  knitr::opts_chunk$set(out.width = "6.3in")
+}
+```
+
+```{r release-values}
+#| include: false
+# ── VALUES THAT CHANGE AT RELEASE ────────────────────────────────────────────────────────
+# These cannot be derived from the assessment. They are the annual edit, kept in one place.
+# Leave them as visible placeholders until the advisory body supplies them: a plausible-looking
+# DOI that resolves to nothing is worse than an obvious blank.
+publication_line <- "Published DD Month YYYY"
+advice_doi       <- "[DOI TO BE ASSIGNED]"
+download_url     <- "[DOWNLOAD URL TO BE ASSIGNED]"
 ```
 
 ```{r advice-values}
 #| include: false
 #| eval: false
 # Every value quoted below, derived once from the assessment output: the advised catch, the
-# stock status relative to each reference point, the change from last year's advice, and
-# the catch-scenario table.
+# stock status relative to each reference point, the change from last year's advice, and the
+# catch-scenario table. Read a SAVED ASSESSMENT SUMMARY here, not the fitted model object —
+# that keeps the sheet fast and guarantees it quotes the same numbers as the assessment report.
 #
 # ay      <- params$advice_year
-# advice  <- ...
+# advice  <- <look the advice-rule row up BY NAME, never by row position>
 # change  <- 100 * (advice - params$prev_advice) / params$prev_advice
+#
+# Derive the status sentence rather than writing it, so the prose cannot contradict the table:
+#
+# b_status <- dplyr::case_when(
+#   bbmsy < blim ~ "below B~lim~",
+#   bbmsy < btrigger ~ "below MSY B~trigger~ but above B~lim~",
+#   .default = "above MSY B~trigger~"
+# )
+#
+# Captions that carry a year are built here as strings and referenced with `!expr`:
+# cap_catch_scenarios <- paste0("Annual catch scenarios for ", ay, ". Catches in tonnes.")
 ```
+
+<!--
+Where the assessment behind this sheet is EXPLORATORY — a supplement to an official assessment
+rather than the official one — open with a callout saying so and naming the official model, and
+treat it as load-bearing. An exploratory sheet mistaken for official advice is the worst
+failure this document type has, and a tidying pass is exactly how such a callout gets dropped.
+
+::: {.callout-warning}
+## Exploratory assessment — not official advice
+...
+:::
+-->
 
 # Advice on fishing opportunities
 
@@ -85,6 +133,14 @@ approach, or a management plan), the advised catch, and the change from the prev
 advice — "Based on the MSY approach, catches in <advice year> should be no more than
 <advised catch> tonnes." Both values are inline R, derived above; see the
 academic-advice-sheet skill for the syntax.
+-->
+
+# Non-fisheries conservation considerations
+
+<!--
+ICES sheets carry this section; IMR sheets usually do not. Delete it for an IMR sheet. Say
+whether conservation measures at national or regional level were reviewed, and name them if
+they were.
 -->
 
 # Stock development over time
@@ -99,12 +155,19 @@ academic-advice-sheet skill for the syntax.
 # Catch scenarios
 
 <!--
-Where a caption has to carry the advice year, build it as a string object in the
-advice-values chunk above and reference it with `#| tbl-cap: !expr cap_catch_scenarios`.
-That avoids inline sprintf() and its doubled-%% escaping. Note that a !expr caption is
-evaluated even when the chunk itself has `eval: false`, so the object must exist.
+The table is GROUPED: an "Advice basis" row, the advice-rule scenario, an "Other scenarios"
+row, then the rest. Group rows are merged across the table, bold, and shaded. The percentage
+columns are the change in biomass and the change from the previous advice; where there was no
+previous advice that column is a dash with a footnote saying why, never a zero, which reads as
+"no change".
 
-    cap_catch_scenarios <- paste0("Annual catch scenarios for ", ay, ". Catches in tonnes.")
+Reference points in a header or a cell need real subscripts — flextable does not read markdown
+inside a cell, so compose them:
+
+    flextable::compose(ft, part = "header", j = f_col,
+      value = flextable::as_paragraph("F", flextable::as_sub("MSY")))
+
+See the academic-advice-sheet skill for the house style and the page-fitting helper.
 -->
 
 ```{r}
@@ -140,6 +203,20 @@ The assessment was run in `r R.version.string` [@rcoreteam]. This sheet was comp
 This document and the associated analyses were created with researcher-supervised generative AI (<!-- MODEL -->). The authors specified and checked the assessment, and reviewed, edited, and approved all AI-assisted content, for which they take full responsibility.
 
 # History of the advice, catch, and management
+
+<!--
+THE ANNUAL-UPDATE TASK. The advice text is a historical record and cannot be derived, so it is
+hard-coded. Key it BY YEAR rather than holding it in a bare vector, so a missing year fails
+loudly instead of silently shifting every row by one:
+
+    advice_history <- list(
+      "2024" = list(advice = "MSY approach", advised_catch = 4200, tac = 4000),
+      "2025" = list(advice = "MSY approach", advised_catch = 3900, tac = 3900)
+    )
+
+When the assessment year advances, EXTEND the list. Never pad, recycle, or shorten the year
+range to make the lengths match.
+-->
 
 ```{r}
 #| label: tbl-advice-history

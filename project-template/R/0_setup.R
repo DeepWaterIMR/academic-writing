@@ -49,7 +49,11 @@ optional_packages <- c(
   ggFishPlots = "DeepWaterIMR/ggFishPlots",
   # Spatiotemporal indices — see https://github.com/DeepWaterIMR/index-template
   sdmTMB = "sdmTMB/sdmTMB",
-  sdmTMBexperiments = "DeepWaterIMR/sdmTMBexperiments"
+  sdmTMBexperiments = "DeepWaterIMR/sdmTMBexperiments",
+  # Biomass-dynamic stock assessment — see https://github.com/DeepWaterIMR/spict-template
+  # spict compiles a TMB model, so it needs a working compiler toolchain; see the
+  # academic-toolchain-setup skill if the install fails.
+  spict = "DTUAqua/spict/spict"
 )
 
 # Set to FALSE (or export R_AW_INSTALL_MISSING=false) to run against the library as it is.

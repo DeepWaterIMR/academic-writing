@@ -107,6 +107,15 @@ DOCUMENT_TYPES <- list(
 # --- Build the YAML author and affiliation blocks from config.yaml -------------------------
 # Emitted at the indentation Quarto expects under `author:` and `affiliations:`. The first
 # author is treated as corresponding.
+
+# A person's name is not a YAML-safe token. A colon, a leading quote, a `#`, or a name that
+# happens to read as a number all break an unquoted scalar, and the failure is a YAML parse
+# error in a document nobody has edited. Everything interpolated from config.yaml is therefore
+# emitted as a double-quoted scalar, which needs only backslashes and double quotes escaped.
+.yaml_scalar <- function(x) {
+  paste0('"', gsub('(["\\\\])', "\\\\\\1", as.character(x)), '"')
+}
+
 .author_block <- function(authors) {
   if (is.null(authors) || !length(authors)) {
     stop("config.yaml must list at least one author under AUTHORS.", call. = FALSE)
@@ -116,17 +125,62 @@ DOCUMENT_TYPES <- list(
     if (is.null(a$name) || !nzchar(a$name)) {
       stop("Every entry under AUTHORS needs a name.", call. = FALSE)
     }
+    refs <- unlist(a$affiliation %||% "imr", use.names = FALSE)
     out <- c(
-      sprintf("  - name: %s", a$name),
+      sprintf("  - name: %s", .yaml_scalar(a$name)),
       "    affiliations:",
-      sprintf("      - ref: %s", a$affiliation %||% "imr"),
+      sprintf("      - ref: %s", .yaml_scalar(refs)),
       sprintf("    corresponding: %s", if (i == 1L) "true" else "false")
     )
-    if (!is.null(a$email) && nzchar(a$email)) out <- c(out, sprintf("    email: %s", a$email))
-    if (!is.null(a$orcid) && nzchar(a$orcid)) out <- c(out, sprintf("    orcid: %s", a$orcid))
+    if (!is.null(a$email) && nzchar(a$email)) {
+      out <- c(out, sprintf("    email: %s", .yaml_scalar(a$email)))
+    }
+    if (!is.null(a$orcid) && nzchar(a$orcid)) {
+      out <- c(out, sprintf("    orcid: %s", .yaml_scalar(a$orcid)))
+    }
     out
   }))
   paste(lines, collapse = "\n")
+}
+
+# Every author has to point at an affiliation that exists. Quarto does not check this: an
+# unresolvable `ref:` renders as a missing affiliation, which is the kind of error that
+# survives to a submitted manuscript. Fail at scaffold time instead.
+.validate_people <- function(authors, affiliations) {
+  if (is.null(authors) || !length(authors)) {
+    stop("config.yaml must list at least one author under AUTHORS.", call. = FALSE)
+  }
+  if (is.null(affiliations) || !length(affiliations)) {
+    stop("config.yaml must list at least one affiliation under AFFILIATIONS.", call. = FALSE)
+  }
+
+  ids <- vapply(affiliations, function(a) as.character(a$id %||% ""), character(1))
+  if (any(!nzchar(ids))) stop("Every entry under AFFILIATIONS needs an id.", call. = FALSE)
+  if (anyDuplicated(ids)) {
+    stop("AFFILIATIONS ids must be unique: ", paste(ids[duplicated(ids)], collapse = ", "),
+         call. = FALSE)
+  }
+  if (any(!vapply(affiliations, function(a) {
+    !is.null(a$name) && nzchar(as.character(a$name))
+  }, logical(1)))) {
+    stop("Every entry under AFFILIATIONS needs a name.", call. = FALSE)
+  }
+
+  for (a in authors) {
+    if (is.null(a$name) || !nzchar(a$name)) {
+      stop("Every entry under AUTHORS needs a name.", call. = FALSE)
+    }
+    refs <- unlist(a$affiliation %||% "imr", use.names = FALSE)
+    unknown <- setdiff(as.character(refs), ids)
+    if (length(unknown)) {
+      stop(
+        "Author '", a$name, "' references an affiliation that is not in AFFILIATIONS: ",
+        paste(unknown, collapse = ", "), ".\nAvailable ids: ", paste(ids, collapse = ", "),
+        call. = FALSE
+      )
+    }
+  }
+  invisible(TRUE)
 }
 
 .affiliation_block <- function(affiliations) {
@@ -134,7 +188,10 @@ DOCUMENT_TYPES <- list(
     stop("config.yaml must list at least one affiliation under AFFILIATIONS.", call. = FALSE)
   }
   paste(unlist(lapply(affiliations, function(a) {
-    c(sprintf("  - id: %s", a$id), sprintf("    name: %s", a$name))
+    c(
+      sprintf("  - id: %s", .yaml_scalar(a$id)),
+      sprintf("    name: %s", .yaml_scalar(a$name))
+    )
   })), collapse = "\n")
 }
 
@@ -184,6 +241,8 @@ scaffold_document <- function(config, target, types = "manuscript", pack = NULL,
     stop("PROJECT_SLUG must be lower-case kebab-case (a-z, 0-9, -): got '", slug, "'",
          call. = FALSE)
   }
+
+  .validate_people(cfg$AUTHORS, cfg$AFFILIATIONS)
 
   # Fail on the unedited template rather than scaffolding a project full of placeholders.
   if (grepl("\\{\\{", paste(unlist(cfg), collapse = " "))) {
