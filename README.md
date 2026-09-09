@@ -3,7 +3,7 @@
 # ✍️ academic-writing — Write scientific documents with AI agents
 
 <!-- version -->
-**Version 0.1.11** (2026-09-09)
+**Version 0.1.12** (2026-09-09)
 <!-- /version -->
 
 
@@ -63,8 +63,8 @@ academic-writing is a knowledge pack that turns a general coding agent (Claude C
 | [`academic-manuscript`](skills/academic-manuscript/SKILL.md) | Helps initiate paper writing for journal submission |
 | [`academic-data-report`](skills/academic-data-report/SKILL.md) | An internal reproducible analysis, every chunk visible but folded |
 | [`academic-cruise-report`](skills/academic-cruise-report/SKILL.md) | A survey metadata report, with Word output for the institute web-report system |
-| [`academic-assessment-report`](skills/academic-assessment-report/SKILL.md) | A stock assessment chapter for ICES, AFWG, JRN-AFWG, or IMR |
-| [`academic-advice-sheet`](skills/academic-advice-sheet/SKILL.md) | A fishing-opportunities advice sheet, IMR, JRN-AFWG, or ICES |
+| [`academic-assessment-report`](skills/academic-assessment-report/SKILL.md) | A chapter for ICES, AFWG, JRN-AFWG, or IMR stock assessment reports |
+| [`academic-advice-sheet`](skills/academic-advice-sheet/SKILL.md) | A fishing-opportunities advice sheet for IMR, JRN-AFWG, or ICES assessments|
 | [`academic-benchmark-report`](skills/academic-benchmark-report/SKILL.md) | A full revision of an assessment method, and its stock annex |
 | [`scientific-quarto-review`](skills/scientific-quarto-review/SKILL.md) | Review and audit an existing `.qmd` or `.Rmd` |
 | [`academic-toolchain-setup`](skills/academic-toolchain-setup/SKILL.md) | Install Git, R, Quarto, Rtools, TinyTeX. Windows first |
