@@ -45,6 +45,24 @@ source(here::here("R", "0_setup.R"))
 source(here::here("R", "report_helpers.R"))
 ```
 
+# Key messages {.unnumbered}
+
+<!--
+Write this section LAST, once the analysis and the recommendations are settled. It is for
+the reader who will not open a single code fold: 3–6 bullets that carry the whole report.
+
+- One finding per bullet, as a complete sentence that leads with the result, not the method.
+- Every number is inline R from the same objects the body uses, never typed, so the summary
+  cannot drift from the analysis. Point to the evidence with a cross-reference (@fig-..., @tbl-...).
+- The last bullet says which values are ready for downstream use and which are provisional.
+  It must agree with "Results and recommendations".
+- No new information: nothing appears here that is not supported further down.
+-->
+
+- <!-- Main finding, with the key value and a cross-reference. -->
+- <!-- Second finding, or the most important caveat about the data. -->
+- <!-- What is ready for downstream use, and what remains provisional. -->
+
 # Purpose
 
 <!--

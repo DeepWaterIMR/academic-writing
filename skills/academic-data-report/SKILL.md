@@ -2,7 +2,7 @@
 name: academic-data-report
 description: Write an internal data report — a fully reproducible HTML analysis document where every analysis chunk is visible but collapsed, used to derive parameters or prepare data for an assessment, a model, or a manuscript. Use when the user wants to document an analysis internally rather than publish it.
 metadata:
-  version: "0.1.2"
+  version: "0.1.3"
 license: MIT
 ---
 
@@ -68,6 +68,8 @@ The skeleton is `docs/data-report/data-report.qmd`.
 
 ## Step 2 — Structure
 
+0. **Key messages** (unnumbered, first) — 3–6 bullets for the reader who will not open a code
+   fold. See below.
 1. **Purpose** — the question, the reader, and what the output feeds into downstream. Name the
    data source and its version.
 2. **Data** — what was read, how many records, over what period and area, what was excluded
@@ -80,6 +82,24 @@ The skeleton is `docs/data-report/data-report.qmd`.
    the exact researcher-confirmed AI model list.
 6. **References** — an unnumbered section backed by the document bibliography.
 7. **Appendix** — the full scripts.
+
+## Key messages
+
+Data reports are long and most readers want only the conclusions. The report therefore
+opens with `# Key messages {.unnumbered}`, a short bullet list placed before **Purpose**:
+
+- **Write it last**, once the analysis and the recommendations are settled.
+- **3–6 bullets, one finding each**, as complete sentences that lead with the result, not
+  the method.
+- **Every number is inline R** from the same objects the body uses, with a cross-reference to
+  the figure or table that supports it.
+- **The last bullet states what is ready for downstream use and what is provisional.** It
+  must agree with *Results and recommendations*.
+- **Nothing new.** Every bullet is supported further down; the section summarises, it does
+  not argue.
+
+When revising an existing report that lacks this section, add it and check every bullet
+against the body.
 
 ## Step 3 — The appendix
 

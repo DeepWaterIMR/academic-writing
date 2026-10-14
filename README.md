@@ -3,7 +3,7 @@
 # ✍️ academic-writing — Write scientific documents with AI agents
 
 <!-- version -->
-**Version 0.1.15** (2026-10-14)
+**Version 0.1.16** (2026-10-14)
 <!-- /version -->
 
 
@@ -61,7 +61,7 @@ academic-writing is a knowledge pack that turns a general coding agent (Claude C
 | [`academic-style`](skills/academic-style/SKILL.md) | How the prose must read. Ten rules, plus eight reference files on IMRaD structure, sentences, distinctions, citations, floats, field conventions, AI disclosure, and checklists |
 | [`academic-conventions`](skills/academic-conventions/SKILL.md) | How the document is built. Project structure, YAML, bibliography and CSL, packages, rendering, Git |
 | [`academic-manuscript`](skills/academic-manuscript/SKILL.md) | Helps initiate paper writing for journal submission |
-| [`academic-data-report`](skills/academic-data-report/SKILL.md) | An internal reproducible analysis, every chunk visible but folded |
+| [`academic-data-report`](skills/academic-data-report/SKILL.md) | An internal reproducible analysis opening with bullet-point key messages, every chunk visible but folded |
 | [`academic-cruise-report`](skills/academic-cruise-report/SKILL.md) | A survey metadata report, with Word output for the institute web-report system |
 | [`academic-assessment-report`](skills/academic-assessment-report/SKILL.md) | A chapter for ICES, AFWG, JRN-AFWG, or IMR stock assessment reports |
 | [`academic-advice-sheet`](skills/academic-advice-sheet/SKILL.md) | A fishing-opportunities advice sheet for IMR, JRN-AFWG, or ICES assessments|
