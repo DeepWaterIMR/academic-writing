@@ -2,7 +2,7 @@
 name: academic-conventions
 description: Technical conventions for reproducible academic documents written in Quarto with R — project structure, YAML headers, BibTeX and CSL, ICES figure widths, inline R instead of hard-coded numbers, code-folded appendices, package loading, local Git, and rendering to HTML, Word, and PDF. Use whenever creating, editing, or rendering a .qmd document or setting up a writing project.
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
 license: MIT
 ---
 
@@ -106,7 +106,7 @@ Manuscripts and Word or PDF deliverables do not need the appendix.
 | `figures/` | output figure files |
 | `logs/` | scratch logs; non-crucial, temporary |
 | `ai/` | agent territory: `ai/memory/`, `ai/tests/`, `ai/review/`. Keep it small |
-| `website/` | website files, where the project has one |
+| `website/` | optional, not scaffolded — create only when the user asks for a project website |
 | `config/` | configuration for GitHub, web, and test tooling |
 | `VERSION` | `version:` and `date:`, starting at 0.1.0 |
 

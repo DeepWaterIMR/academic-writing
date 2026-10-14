@@ -24,7 +24,6 @@ maintaining two conventions.
 │   ├── memory/         Project memory: MEMORY.md plus one fact per file
 │   ├── tests/          Tests the agent writes
 │   └── review/         Review notes and audit output
-├── website/            Website files, where the project has one
 ├── config/             GitHub, web, and test configuration
 ├── config.yaml         Project settings, read at run time by R/0_setup.R
 ├── AGENTS.md           Agent contract for this project
@@ -58,6 +57,10 @@ embeds do not need to be here.
 `ai/memory/` (read `MEMORY.md` first, one fact per file, link related facts), tests in
 `ai/tests/`, review output in `ai/review/`. Keep the total small: it is read into context
 often.
+
+**`website/`** — not scaffolded. Create it only when the user asks for a project website (a
+Quarto site, a GitHub Pages source, or the assets for either); most writing projects do not
+need one.
 
 **`config/`** — GitHub Actions, linter settings, and anything else configuring tooling rather
 than the analysis. Analysis settings belong in `config.yaml`.

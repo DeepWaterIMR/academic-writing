@@ -3,7 +3,7 @@
 # ✍️ academic-writing — Write scientific documents with AI agents
 
 <!-- version -->
-**Version 0.1.16** (2026-10-14)
+**Version 0.1.17** (2026-10-14)
 <!-- /version -->
 
 
