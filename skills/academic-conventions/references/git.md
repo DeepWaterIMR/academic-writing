@@ -83,6 +83,7 @@ figures/*
 .Rhistory
 .RData
 .Ruserdata
+Rplots.pdf
 *.Rproj
 
 # --- OS / editor ---

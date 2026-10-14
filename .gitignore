@@ -53,6 +53,7 @@
 .Rhistory
 .RData
 .Ruserdata
+Rplots.pdf
 *.Rproj
 
 # --- Quarto / site build ---
